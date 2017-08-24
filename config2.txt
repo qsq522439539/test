@@ -1,0 +1,178 @@
+﻿<TC=基本功能>
+<PARA=BW_FA_SA_SSP> COMB
+	#带宽: 10MHz, 20MHz 
+	#频点:  各不同
+	#子帧配置：1,2
+	#特殊子帧配置：5,7
+	
+	'10MHz,44190(3660MHz),1 (DL:UL = 2:2),7'
+	'10MHz,44140(3655MHz),1 (DL:UL = 2:2),5'
+	'10MHz,44290(3670MHz),2 (DL:UL = 3:1),7'
+	'10MHz,44540(3695MHz),2 (DL:UL = 3:1),5'
+	'20MHz,44190(3660MHz),1 (DL:UL = 2:2),5'
+	'20MHz,44390(3680MHz),1 (DL:UL = 2:2),7'
+	'20MHz,44290(3670MHz),2 (DL:UL = 3:1),7'
+	'20MHz,44490(3690MHz),2 (DL:UL = 3:1),5'
+</PARA>
+<PARA=BW_FA_SA_SSP2> COMB
+	#带宽: 10MHz, 20MHz 
+	#频点:  各不同
+	#子帧配置：1,2
+	#特殊子帧配置：5,7
+	'20MHz,44190(3660MHz),1 (DL:UL = 2:2),7'
+	'10MHz,44540(3695MHz),2 (DL:UL = 3:1),5'
+</PARA>
+</TC>
+
+<TC=IPSEC-MMEPOOL>
+<PARA=FIRSTTUNNEL>	COMB 
+	#启用: 开|关 Enable|Disable
+	#Tunnul Name: 1-10位字符串
+	#网关: IP地址
+	#Right Subnet/Mask：IP地址/掩码
+	#Left Id: 0-48位字符串
+	#Right Id: 0-48位字符串
+	#AuthBy: psk | cert | aka_psk | aka_cert
+	#preshared key: 
+	#Left SourceIP: CheckBox
+	'E,tunnel1,192.168.9.79,10.0.10.0/255.255.255.0,,,psk,123456,'
+	'E,tunnel1,192.168.9.79,10.0.10.0/255.255.255.128,,,psk,123456,'
+	'E,tunnel1,192.168.9.46,10.0.10.0/255.255.255.0,,,psk,123456,'
+	'E,tunnel1,192.168.8.46,10.0.10.0/255.255.255.0,,,psk,123456,'
+</PARA>
+<PARA=SECONDTUNNEL>	COMB 
+	'E,tunnel2,192.168.103.116,50.50.50.0/255.255.255.0,,,psk,123456,'
+	'E,tunnel2,192.168.103.116,50.50.50.0/255.255.255.128,,,psk,123456,'
+	'E,tunnel2,192.168.9.56,100.0.100.0/255.255.255.0,,,psk,123456,'
+	'E,tunnel2,192.168.8.56,100.0.100.0/255.255.255.0,,,psk,123456,'
+</PARA>
+<PARA=WB.NF.26.3>	COMB 
+	"E,Tunnel2,192.168.10.46,10.0.10.24/255.255.255.0,,,psk,123456,"
+	"E,Tunnel3,192.168.11.46,10.0.11.35/255.255.0.0,,,psk,123456,"
+	"E,Tunnel4,192.168.12.46,10.0.10.66/255.255.192.0,,,psk,123456,"
+	"E,Tunnel5,192.168.12.46,10.0.10.5/255.255.255.224,,,psk,123456,"
+</PARA>
+<PARA=WB.NF.26.4>	COMB 
+	"E,Tunne42,192.168.9.79,26.20.20.20/255.255.255.0;36.30.30.30/255.255.255.0,leftid,rightid,psk,presharedkey,"
+	"E,Tunne43,192.168.9.79,27.20.20.20/255.255.0.0;37.30.30.30/255.0.0.0,leftid,rightid,psk,presharedkey,"
+</PARA>
+<PARA=WB.NF.26.10_1>	COMB #Wrong IPSec#1 Configuration
+	"E,Tunne41,192.168.10.79,10.0.10.0/255.255.255.0,,,psk,123456,"		#IP错误
+	"E,Tunne41,192.168.9.79,10.13.10.0/255.255.255.0,,,psk,123456,"		#Right Subnet错误
+	"E,Tunne41,192.168.9.79,10.0.10.0/255.255.255.0,,,psk,12345678,"		#Password错误
+</PARA>
+<PARA=WB.NF.26.10_2>	COMB #Wrong IPSec#2 Configuration
+	"E,Tunne42,192.168.104.116,50.50.50.0/255.255.255.0,,,psk,123456,"		#IP错误
+	"E,Tunne42,192.168.103.116,50.51.50.0/255.255.255.0,,,psk,123456,"		#Right Subnet错误
+	"E,Tunne42,192.168.103.116,50.50.50.0/255.255.255.0,,,psk,12345678,"	#Password错误
+</PARA>
+<PARA=MMEPOOL-IP>	COMB 
+	#MME 1 IP：xx.xx.xx.xx;yy.yy.yy.yy;zz.zz.zz.zz
+	#MME 2 IP：xx.xx.xx.xx;yy.yy.yy.yy;zz.zz.zz.zz
+	'10.0.10.22,50.50.50.50'
+</PARA>
+<PARA=ENBSTATICIP>	COMB 
+	#IP, Mask, GW, DNS(多个DNS以分号隔开)
+	'192.168.9.146,255.255.255.0,192.168.9.1,114.114.114.114;8.8.8.8'
+	'192.168.107.205,255.255.252.0,192.168.104.1,114.114.114.114;8.8.8.8'
+</PARA>
+</TC>
+
+
+#LP
+# LMT-网络设置-LGW 测试参数
+<TC=LMT_LGW>
+<PARA=ONOFF>    ENUM    'Disable-WC' 'Enable-WO' </PARA>  # LGW开关预期值及窗口状态WC：窗口打开 WO：窗口关闭
+<PARA=MODE>     ENUM    'NAT-WO' 'Router-WO' 'Bridge-WC' </PARA> # LGW模式预期值及IPPOOL窗口状态
+<PARA=WINDOW_STC> ENUM  'NAT-WC' 'Router-WO' 'Bridge-WC' </PARA> # 静态地址窗口状态
+<PARA=PORT>     ENUM    'wan' 'pppoe' </PARA>
+<PARA=IPPOOL>	ENUM    "1111" "111.111.111" "abbb" "@#$%^&" "" ‘255.255.255.0’ "255.255.255.255" ‘255.255.255.128’ ‘255.255.255.224’ ‘255.255.255.240’, ‘255.255.255.248’</PARA>
+<PARA=NETMASK>  ENUM    '255.255.255.0' '255.255.255.128' '255.255.255.192' '255.255.255.224' '255.255.255.240' '255.255.255.248' </PARA>
+<PARA=STIP>     ENUM    'Disable-WC' 'Enable-WO'</PARA>
+<PARA=SPECIP>   ENUM    '0' '255' '128' '224' '240' 248' </PARA>
+<PARA=STINPUT>  ENUM
+                  # 检查开始地址输入框
+                  "10.244.30.24"
+                  "192.168.0."
+                  "192.168.0.a"
+                  "192.168.0.0"
+                  ""
+                  "a.b.c.d"
+                  "192-179-244-103"                    
+</PARA>
+<PARA=IMSI>    ENUM
+               # IMSI输入框错误检查
+               "99999999999999"
+               "1000000000000000"
+               "1000000000000.00"
+               "*&^@@#"
+               ""
+               "1 23456789010234"
+</PARA>
+<PARA=IMSIP>   ENUM
+              "192.168.0.0"
+               ""
+               "192.168.0.201"
+               "*1238**"
+               "192.168.0"   
+</PARA>     
+<PARA=ALL>    COMB
+           # 选择模式，掩码，及添加数量
+           'Router,255.255.255.0,32'
+           'Router,255.255.255.224,16'
+           'Router,255.255.255.192,24'
+           'Router,255.255.255.248,6' 
+           "Router,255.255.255.0,33"
+</PARA>
+</TC>
+
+
+# LMT-网络设置-VLAN 测试参数
+<TC=VLAN_CFG>
+<PARA=VLAN1>    ENUM    "0000000000000000" "#1" "a@" "*" "1.0" ""</PARA>
+<PARA=VLAN2>    ENUM    "1"  "4095" "a" "%" "2.0" "3a" "5a)" ""</PARA>
+<PARA=VLAN3>    ENUM    'DHCP' 'Static' </PARA>
+<PARA=VLAN4>    ENUM    "a" "0.0.0.0" "255.255.255.255" "192.168.1" "&*#1" ""</PARA>
+<PARA=VLAN5>    ENUM    "a" "0.0.0.0" "255.255.255." "255.255.255.1" "" </PARA>
+<PARA=DHCP>     DIGIT    '10' </PARA>
+<PARA=STATIC>   DIGIT    '10' </PARA>
+<PARA=NUM>      DIGIT    '10' </PARA>
+<PARA=NUM1>      DIGIT    '10' </PARA>
+<PARA=NUM2>      DIGIT    '10' </PARA>
+<PARA=SPECAL>   COMB
+                "192.168.100.2,255.255.255.0,192.168.100.1,192.168.100.11,255.255.255.248,192.168.100.1"
+                "192.168.100.2,255.255.255.0,192.168.100.1,192.168.100.64,255.255.255.192,192.168.100.1"
+                "192.167.100.2,255.255.0.0,192.167.100.1,192.167.123.11,255.255.255.0,192.167.123.1,"
+                "192.167.100.2,255.255.0.0,192.167.100.1,192.167.100.11,255.255.255.248,192.167.100.1"
+</PARA>
+<PARA=GATE>     COMB
+                '192.167.1.11,255.255.192.0,192.167.0.1'
+                '192.166.1.11,255.255.192.0,192.166.63.254'
+                '127.11.11.11,255.255.0.0,127.11.1.255'
+                '126.11.11.11,255.255.0.0,126.11.254.0'
+                "192.169.1.11,255.255.255.0,192.168.1.0"
+                "192.168.1.11,255.255.255.248,192.168.1.15"
+                "192.170.2.15,255.255.255.248,192.170.2.8"
+</PARA>
+<PARA=WANIP>    ENUM  "192.168.150.1" "255.255.255.0" </PARA>
+<PARA=DELETE>   COMB
+                '192.160.2.11,255.255.192.0,192.160.2.12'
+                '192.200.1.172,255.255.255.0,192.200.1.1'
+                '120.1.1.1,255.255.0.0,120.1.255.10'
+</PARA>
+</TC>
+
+
+# LMT-LTE-高级设置-容量参数设置
+<TC=MAX_UE>
+<PARA=MAX_UE1> COMMAND cli -c "oam.getwild LTE_MAX_UE_SERVED" | awk -F" " '{print $2}' | tr -d "\n"</PARA>
+<PARA=MAX_UE2> COMMAND cli -c "oam.getwild LTE_MAX_MAC_RNTIS" | awk -F" " '{print $2}' | tr -d "\n"</PARA>
+<PARA=MAX_UE3> COMMAND cli -c "oam.getwild LTE_RRM_SR_PRDCTY" | awk -F" " '{print $2}' | tr -d "\n"</PARA>
+<PARA=MAX_UE4> COMMAND cli -c "oam.getwild LTE_RRM_CQI_PRDCTY" | awk -F" " '{print $2}' | tr -d "\n"</PARA>
+<PARA=MAX_UE5> COMMAND cli -c "oam.getwild LTE_RRM_NUM_CQI_PER_TTI" | awk -F" " '{print $2}' | tr -d "\n"</PARA>
+<PARA=MAX_UE6> COMMAND cli -c "oam.getwild LTE_RRM_NUM_SR_PER_TTI" | awk -F" " '{print $2}' | tr -d "\n"</PARA>
+<PARA=MAX_UE7> COMMAND cli -c "oam.getwild LTE_NRBCQI" | awk -F" " '{print $2}' | tr -d "\n"</PARA>
+<PARA=MAX_UE8> COMMAND cli -c "oam.getwild LTE_CQIRESSHIFT" | awk -F" " '{print $2}' | tr -d "\n"</PARA>
+<PARA=MAX_UE9> COMMAND cli -c "oam.getwild LTE_96_UE_ENABLE" | awk -F" " '{print $2}' | tr -d "\n"</PARA>
+</PARA>
+</TC>

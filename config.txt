@@ -1,0 +1,1239 @@
+﻿备注：
+- 单引号：期望正确结果
+- 双引号：期望错误结果
+- 字符反斜杠表示\\
+- 如果参数字段中带有单引号或双引号，前面加反斜杠
+
+<TC=ENB.QuickSet>
+<PARA=PCI>		DIGIT	"-1" "ddf" "ddg_*&)" "504" "511" </PARA>
+<PARA=CellID>	DIGIT	"-1" "ddf" "ddg_*&)" "270000000"</PARA>
+<PARA=PLMN>		DIGIT	"-1" "ddf" "ddg_*&)" "0" "511" </PARA>
+<PARA=TAC>		DIGIT	"-1" "ddf" "ddg_*&)" "65600"  </PARA>
+<PARA=MMEip>	ENUM	'192.168.1.1' '1.2.3.4' '169.254.2.3' '192.168.254.254' </PARA>
+<PARA=MMEip_ko>	ENUM	"192.168.1.a" "255.255.255.255" "169.256.2.3" "192.168.2" "192.*.2.1" "192. &. $.*"  "192. . . "</PARA>
+</TC>
+
+<TC=ENB.QuickSet.list>
+<PARA=CountryCode>	ENUM    'FCC ' 'Canada Or Other Area'</PARA>
+<PARA=BAND1>	ENUM	'43'</PARA>
+<PARA=BAND2>	ENUM	'42' '43'</PARA>
+<PARA=BandWidth>	ENUM	'10MHz' '20MHz'</PARA>
+<PARA=Frequency1>	ENUM	'44140(3655MHz)' '44420(3683MHz)' '44540(3695MHz)'</PARA>
+<PARA=Frequency2>	ENUM	'44190(3660MHz)' '44410(3682MHz)' '44490(3690MHz)'</PARA>
+<PARA=FreqCheck01>	ENUM	'44140-44540-10-3655-3695-1-43'</PARA>
+<PARA=FreqCheck02>	ENUM	'44190-44490-10-3660-3690-1-43'</PARA>
+<PARA=FreqCheck11>	ENUM	'43640-44540-10-3605-3695-1-43' '43140-43540-10-3555-3595-1-42'</PARA>
+<PARA=FreqCheck12>	ENUM	'43690-44490-10-3610-3690-1-43' '43190-43490-10-3560-3590-1-42'</PARA>
+<PARA=SubFrame>	    ENUM	'1 (DL:UL = 2:2)' '2 (DL:UL = 3:1)'</PARA>
+<PARA=SpecSubFrame>	ENUM	'5' '7'</PARA>
+<PARA=Power>	ENUM	'30dbm' '29dbm' '28dbm' '27dbm' '26dbm' '25dbm' '24dbm' '23dbm' '22dbm' '21dbm' </PARA>
+</TC>
+
+<TC=ENB.QuickSet.Multi>
+<PARA=QuickSetList1> COMB
+    #国家代码：FCC,Canda Or Other Area
+    #Band： 42/43    
+	#带宽: 10MHz, 20MHz 
+	#频点:  各不同
+	#子帧配置：1,2
+	#特殊子帧配置：5,7
+    'Canada Or Other Area,43,10MHz,43640(3605MHz),1 (DL:UL = 2:2),5'
+	'Canada Or Other Area,43,10MHz,44540(3695MHz),2 (DL:UL = 3:1),7'
+	'Canada Or Other Area,43,20MHz,43690(3610MHz),1 (DL:UL = 2:2),7'
+	'Canada Or Other Area,43,20MHz,44490(3690MHz),2 (DL:UL = 3:1),5'
+    'Canada Or Other Area,42,10MHz,43140(3555MHz),1 (DL:UL = 2:2),5'
+	'Canada Or Other Area,42,10MHz,43540(3595MHz),2 (DL:UL = 3:1),7'
+	'Canada Or Other Area,42,20MHz,43190(3560MHz),1 (DL:UL = 2:2),7'
+	'Canada Or Other Area,42,20MHz,43490(3590MHz),2 (DL:UL = 3:1),5'
+    'FCC ,43,10MHz,44140(3655MHz),1 (DL:UL = 2:2),5'
+	'FCC ,43,10MHz,44540(3695MHz),2 (DL:UL = 3:1),7'
+    'FCC ,43,20MHz,44190(3660MHz),1 (DL:UL = 2:2),7'
+	'FCC ,43,20MHz,44490(3690MHz),2 (DL:UL = 3:1),5'
+</PARA>
+<PARA=QuickSetList2> COMB 
+	#PCI: 0~503 integer
+	#CellID: 0~268435455 integer
+	#PLMN：5~6 digit integer
+	#TAC：0~65535 integer
+	"-1,312,46097,10"
+	"504,268435455,999999,0"
+	"503,-1,00000,65535"
+	"52,268435456,311985,1"
+    "0,268435,123,1"
+    "502,435456,1000000,65535"
+    "52,35456,0000,10"
+    "152,268436,311985,-1"
+    "503,268435455,999999,65536"
+    "a,268435455,999999,65536"
+    "502,abc,1000000,65535"
+    "52,35456,#!`,10"
+    "152,268436,311985,cmd"
+    "$%h,26vg,999999,65536"
+    "50,2684354,9cdn+,65\*^"
+</PARA>
+</TC>
+
+<TC=LTE.Advanced>
+<PARA=eNodeB>	ENUM    '5ddf1' '0' '1234567890123456789012345678901234567890abcdefgh' '-1' 'cmcc1-CHINA,+   +./:?BAICAIBANG'</PARA>
+<PARA=eNodeB_ko>	ENUM    "123456789012345678901234567890123456ABc0123456789" "ddg_*&)" ":+ABC" "CDE:=A" "M:,N"</PARA>
+<PARA=PhyGain>	ENUM	"-1" "77" "a" "4+" "!@#" "67-"</PARA>
+<PARA=SON>	ENUM	"-1" "504" "10-" "21+" "ABC" "ac2d" "@#$^?"</PARA>
+</TC>
+
+<TC=LTE.Advanced.list>
+<PARA=GAP>	        ENUM	'1 ' '2 '</PARA>
+<PARA=CQIperiod>	ENUM	'10ms ' '20ms ' '40ms ' '80ms ' '160ms '</PARA>
+<PARA=PowerRamp>	ENUM	'0' '2' '4' '6'</PARA>
+<PARA=PreambleInit>	ENUM	'-120' '-118' '-116' '-114' '-112' '-110' '-108' '-106' '-104' '-102' '-100' '-98' '-96' '-94' '-92' '-90'</PARA>
+<PARA=Alpha>	ENUM	'0' '40' '50' '60' '70' '80' '90' '100'</PARA>
+<PARA=PA>	ENUM	'-600' '-477' '-300' '-177' '0' '100' '200' '300'</PARA>
+</TC>
+
+<TC=LTE.Advanced.Multi>
+<PARA=PCI> COMB 
+	#Start PCI: 0~503 integer
+	#PCI Range: 0~268435455 integer
+	"3,501"
+	"-1,500"
+	"503,1"
+    "2,a"	
+</PARA>
+<PARA=Power_ko> COMB 
+	#p-max: -30~33
+	#referenc signal power: -60~50
+    #p0_normal_pusch: -126~24
+    #p0_normal_pucch: -127~-96
+    #max pathloss: 100~135
+    #target ul sinr: -6~10
+    #p0_ue_pucch: -8~7
+    #p0_ue_pusch: -8~7
+    #pb: 0~3
+	"-31,-15,-33,-104,121,-6,-3,6,0"  "34,-15,-33,-104,121,-6,-3,6,0"
+	"-29,-61,-33,-104,121,-6,-3,6,0"  "-29,51,-33,-104,121,-6,-3,6,0"
+	"-29,-15,-127,-104,121,-6,-3,6,0" "-29,-15,25,-104,121,-6,-3,6,0"
+    "-29,-15,-33,-128,121,-6,-3,6,0"  "-29,-15,-33,97,121,-6,-3,6,0"
+    "-29,-15,-33,-104,99,-6,-3,6,0"  "-29,-15,-33,-104,136,-6,-3,6,0"
+    "-29,-15,-33,-104,121,-7,-3,6,0"  "-29,-15,-33,-104,121,11,-3,6,0"
+    "-29,-15,-33,-104,121,-6,-9,6,0"  "-29,-15,-33,-104,121,-6,8,6,0"
+    "-29,-15,-33,-104,121,-6,-3,-9,0"  "-29,-15,-33,-104,121,-6,-3,8,0"
+    "-29,-15,-33,-104,121,-6,-3,6,-1" "-29,-15,-33,-104,121,-6,-3,6,4"
+    "a,-15,-33,-104,121,-6,-3,6,0"  "@,-15,-33,-104,121,-6,-3,6,0"
+	"-29,ab,-33,-104,121,-6,-3,6,0"  "-29,#,-33,-104,121,-6,-3,6,0"
+	"-29,-15,abc,-104,121,-6,-3,6,0" "-29,-15,$,-104,121,-6,-3,6,0"
+    "-29,-15,-33,-d,121,-6,-3,6,0"  "-29,-15,-33,%,121,-6,-3,6,0"
+    "-29,-15,-33,-104,fg,-6,-3,6,0"  "-29,-15,-33,-104,*,-6,-3,6,0"
+    "-29,-15,-33,-104,121,af,-3,6,0"  "-29,-15,-33,-104,121,(,-3,6,0"
+    "-29,-15,-33,-104,121,-6,vn,6,0"  "-29,-15,-33,-104,121,-6,_,6,0"
+    "-29,-15,-33,-104,121,-6,-3,ml,0"  "-29,-15,-33,-104,121,-6,-3,+,0"
+    "-29,-15,-33,-104,121,-6,-3,6, " "-29,-15,-33,-104,121,-6,-3,6,="
+</PARA>
+<PARA=RRCstatus> COMB 
+	#Inactivity Timer: 0~4294967 integer
+	#Max Expiry Count: 0~65535 integer
+	"3,65536"
+	"-1,500"
+	"4294968,1"
+    "2,-1"	
+    "1+2,1"
+    "2,bbbb"
+    "3-,5"
+    "34,89-200"
+</PARA>
+<PARA=RandomAccess1> COMB 
+	#Subframe ratio=1:if zero correlation <=6, prach cannot be configured to8,13,14,40~47,58~63
+    #..................else prach cannot be configured to 8,13,14,40~63
+	#prach config: 0~63 integer
+	#zero correlation: 0~15 integer
+    '10,1'
+    '39,15'
+    "63,2"
+    "8,3"
+    "14,6"
+    "48,8"
+	"3,16"
+	"-1,10"
+	"64,1"
+    "2,-1"
+    "a,b"
+    "#,%"
+    "^,*"
+    "~,+"
+    '0,0'
+</PARA>
+<PARA=RandomAccess2> COMB 
+	#Subframe ratio=2:if zero correlation <=6, prach cannot be configured to5,7,8,11,13,14,17,19~47,58~63
+    #..................else prach cannot be configured to 5,7,8,11,13,14,17,19~63
+	#prach config: 0~63 integer
+	#zero correlation: 0~15 integer
+    '10,1'
+    "39,15"
+    "63,2"
+    "8,3"
+    "17,6"
+    "48,8"
+	"3,16"
+	"-1,10"
+	"64,1"
+    "2,-1"
+    "a,b"
+    "#,%"
+    "^,*"
+    "_,+"
+    '0,0'
+</PARA>
+<PARA=Capacity> COMB 
+	#CQI Period list: 10ms,20ms,40ms,80,160ms
+	#max ue num: 0~127
+   	#max mac RNTIS: 0~381
+	#CQI per TTI: 1~8    
+	"10ms ,0,0,0"
+    "20ms ,10,382,1"
+    "40ms ,128,381,1"
+    "80ms ,-1,382,7"
+    "160ms ,120,30,9"
+</PARA>
+<PARA=SchedulAlgo> COMB 
+	#UL Schd Type: RR,PFS,max C/I
+	#DL Schd Type: RR,PFS,max C/I
+	'RR ,RR '
+    'RR ,PFS '
+	'RR ,SC1 '
+	'PFS ,RR '
+	'PFS ,PFS '
+	'PFS ,SC1 '
+	'SC1 ,RR '
+	'SC1 ,PFS '
+	'SC1 ,SC1 '    
+</PARA>
+<PARA=SyncAdjust> COMB 
+	#GPS Sync Adjust: -65535~65535 integer
+	#ICTA Adjust: -65535~65535 integer
+	"-3,65536"
+	"65536,-500"
+	"-65536,123"
+    "2,-65536"
+	"3-,234"
+    "a,b"
+    "+,*&^%"
+</PARA>
+<PARA=LinkActivation> COMB 
+	#Link alive time: 5 minutes,10 minutes,15 minutes
+	'Enable,5 Minutes'
+	'Enable,10 Minutes'
+	'Enable,15 Minutes'
+	'Disable,5 Minutes'
+	'Disable,10 Minutes'
+	'Disable,15 Minutes'   
+</PARA>
+</TC>
+
+<TC=System>
+<PARA=NTP_ko>    COMB
+ 	"9,1.cn.pool.ntp.org,afd,12345,1.cn.pool.ntp.org,1,1,1,1" "65536,1.cn.pool.ntp.org,1.cn.pool.ntp.org,1.cn.pool.ntp.org,1.cn.pool.ntp.org,1,1,1,1"
+    "11,1.cn.pool.ntp.org,1.cn.pool.ntp.org,1.cn.pool.ntp.org,1.cn.pool.ntp.org,0,1,0,1" "11,1.cn.pool.ntp.org,1.cn.pool.ntp.org,1.cn.pool.ntp.org,1.cn.pool.ntp.org,1,20001,1,20001"
+    "a,1.cn.pool.ntp.org,1.cn.pool.ntp.org,1.cn.pool.ntp.org,1.cn.pool.ntp.org,1,1,1,1" "655,1.cn.pool.ntp.org,1.cn.pool.ntp.org,1.cn.pool.ntp.org,1.cn.pool.ntp.org,1,a,1,b"
+    "12-,1.cn.pool.ntp.org,1.cn.pool.ntp.org,1.cn.pool.ntp.org,1.cn.pool.ntp.org,1,1,1,1" "36,1.cn.pool.ntp.org,1.cn.pool.ntp.org,1.cn.pool.ntp.org,1.cn.pool.ntp.org,2-,3+,1,1"
+    "90,1.cn pool ntp org,1.cn.pool.ntp.org,1.cn.pool.ntp.org,1.cn.pool.ntp.org,1,1,1,1" "536,1.cn.pool.ntp.org,1.cn.pool.ntp.org,1.cn.pool.ntp.org,:+\<>|,1,1,1,1"  
+</PARA>
+<PARA=TimeZone>	ENUM	'Africa/Abidjan'  'Africa/Accra'  'Africa/Addis_Ababa'  'Africa/Algiers'  'Africa/Asmara'  'Africa/Bamako'  'Africa/Bangui'  'Africa/Banjul'  'Africa/Bissau'  'Africa/Blantyre'  'Africa/Brazzaville'  'Africa/Bujumbura'  'Africa/Cairo'  'Africa/Casablanca'  'Africa/Ceuta'  'Africa/Conakry'  'Africa/Dakar'  'Africa/Dar_es_Salaam'  'Africa/Djibouti'  'Africa/Douala'  'Africa/El_Aaiun'  'Africa/Freetown'  'Africa/Gaborone'  'Africa/Harare'  'Africa/Johannesburg'  'Africa/Juba'  'Africa/Kampala'  'Africa/Khartoum'  'Africa/Kigali'  'Africa/Kinshasa'  'Africa/Lagos'  'Africa/Libreville'  'Africa/Lome'  'Africa/Luanda'  'Africa/Lubumbashi'  'Africa/Lusaka'  'Africa/Malabo'  'Africa/Maputo'  'Africa/Maseru'  'Africa/Mbabane'  'Africa/Mogadishu'  'Africa/Monrovia'  'Africa/Nairobi'  'Africa/Ndjamena'  'Africa/Niamey'  'Africa/Nouakchott'  'Africa/Ouagadougou'  'Africa/Porto-Novo'  'Africa/Sao_Tome'  'Africa/Tripoli'  'Africa/Tunis'  'Africa/Windhoek'  'America/Adak'  'America/Anchorage'  'America/Anguilla'  'America/Antigua'  'America/Araguaina'  'America/Argentina/Buenos_Aires'  'America/Argentina/Catamarca'  'America/Argentina/Cordoba'  'America/Argentina/Jujuy'  'America/Argentina/La_Rioja'  'America/Argentina/Mendoza'  'America/Argentina/Rio_Gallegos'  'America/Argentina/Salta'  'America/Argentina/San_Juan'  'America/Argentina/San_Luis'  'America/Argentina/Tucuman'  'America/Argentina/Ushuaia'  'America/Aruba'  'America/Asuncion'  'America/Atikokan'  'America/Bahia'  'America/Bahia_Banderas'  'America/Barbados'  'America/Belem'  'America/Belize'  'America/Blanc-Sablon'  'America/Boa_Vista'  'America/Bogota'  'America/Boise'  'America/Cambridge_Bay'  'America/Campo_Grande'  'America/Cancun'  'America/Caracas'  'America/Cayenne'  'America/Cayman'  'America/Chicago'  'America/Chihuahua'  'America/Costa_Rica'  'America/Creston'  'America/Cuiaba'  'America/Curacao'  'America/Danmarkshavn'  'America/Dawson'  'America/Dawson_Creek'  'America/Denver'  'America/Detroit'  'America/Dominica'  'America/Edmonton'  'America/Eirunepe'  'America/El_Salvador'  'America/Fortaleza'  'America/Glace_Bay'  'America/Godthab'  'America/Goose_Bay'  'America/Grand_Turk'  'America/Grenada'  'America/Guadeloupe'  'America/Guatemala'  'America/Guayaquil'  'America/Guyana'  'America/Halifax'  'America/Havana'  'America/Hermosillo'  'America/Indiana/Indianapolis'  'America/Indiana/Knox'  'America/Indiana/Marengo'  'America/Indiana/Petersburg'  'America/Indiana/Tell_City'  'America/Indiana/Vevay'  'America/Indiana/Vincennes'  'America/Indiana/Winamac'  'America/Inuvik'  'America/Iqaluit'  'America/Jamaica'  'America/Juneau'  'America/Kentucky/Louisville'  'America/Kentucky/Monticello'  'America/Kralendijk'  'America/La_Paz'  'America/Lima'  'America/Los_Angeles'  'America/Lower_Princes'  'America/Maceio'  'America/Managua'  'America/Manaus'  'America/Marigot'  'America/Martinique'  'America/Matamoros'  'America/Mazatlan'  'America/Menominee'  'America/Merida'  'America/Metlakatla'  'America/Mexico_City'  'America/Miquelon'  'America/Moncton'  'America/Monterrey'  'America/Montevideo'  'America/Montserrat'  'America/Nassau'  'America/New_York'  'America/Nipigon'  'America/Nome'  'America/Noronha'  'America/North_Dakota/Beulah'  'America/North_Dakota/Center'  'America/North_Dakota/New_Salem'  'America/Ojinaga'  'America/Panama'  'America/Pangnirtung'  'America/Paramaribo'  'America/Phoenix'  'America/Port_of_Spain'  'America/Port-au-Prince'  'America/Porto_Velho'  'America/Puerto_Rico'  'America/Rainy_River'  'America/Rankin_Inlet'  'America/Recife'  'America/Regina'  'America/Resolute'  'America/Rio_Branco'  'America/Santa_Isabel'  'America/Santarem'  'America/Santiago'  'America/Santo_Domingo'  'America/Sao_Paulo'  'America/Scoresbysund'  'America/Sitka'  'America/St_Barthelemy'  'America/St_Johns'  'America/St_Kitts'  'America/St_Lucia'  'America/St_Thomas'  'America/St_Vincent'  'America/Swift_Current'  'America/Tegucigalpa'  'America/Thule'  'America/Thunder_Bay'  'America/Tijuana'  'America/Toronto'  'America/Tortola'  'America/Vancouver'  'America/Whitehorse'  'America/Winnipeg'  'America/Yakutat'  'America/Yellowknife'  'Antarctica/Casey'  'Antarctica/Davis'  'Antarctica/DumontDUrville'  'Antarctica/Macquarie'  'Antarctica/Mawson'  'Antarctica/McMurdo'  'Antarctica/Palmer'  'Antarctica/Rothera'  'Antarctica/Syowa'  'Antarctica/Troll'  'Antarctica/Vostok'  'Arctic/Longyearbyen'  'Asia/Aden'  'Asia/Almaty'  'Asia/Amman'  'Asia/Anadyr'  'Asia/Aqtau'  'Asia/Aqtobe'  'Asia/Ashgabat'  'Asia/Baghdad'  'Asia/Bahrain'  'Asia/Baku'  'Asia/Bangkok'  'Asia/Beirut'  'Asia/Bishkek'  'Asia/Brunei'  'Asia/Chita'  'Asia/Choibalsan'  'Asia/Colombo'  'Asia/Damascus'  'Asia/Dhaka'  'Asia/Dili'  'Asia/Dubai'  'Asia/Dushanbe'  'Asia/Gaza'  'Asia/Hebron'  'Asia/Ho_Chi_Minh'  'Asia/Hong_Kong'  'Asia/Hovd'  'Asia/Irkutsk'  'Asia/Jakarta'  'Asia/Jayapura'  'Asia/Jerusalem'  'Asia/Kabul'  'Asia/Kamchatka'  'Asia/Karachi'  'Asia/Kathmandu'  'Asia/Khandyga'  'Asia/Kolkata'  'Asia/Krasnoyarsk'  'Asia/Kuala_Lumpur'  'Asia/Kuching'  'Asia/Kuwait'  'Asia/Macau'  'Asia/Magadan'  'Asia/Makassar'  'Asia/Manila'  'Asia/Muscat'  'Asia/Nicosia'  'Asia/Novokuznetsk'  'Asia/Novosibirsk'  'Asia/Omsk'  'Asia/Oral'  'Asia/Phnom_Penh'  'Asia/Pontianak'  'Asia/Pyongyang'  'Asia/Qatar'  'Asia/Qyzylorda'  'Asia/Rangoon'  'Asia/Riyadh'  'Asia/Sakhalin'  'Asia/Samarkand'  'Asia/Seoul'  'Asia/Shanghai'  'Asia/Singapore'  'Asia/Srednekolymsk'  'Asia/Taipei'  'Asia/Tashkent'  'Asia/Tbilisi'  'Asia/Thimphu'  'Asia/Tokyo'  'Asia/Ulaanbaatar'  'Asia/Urumqi'  'Asia/Ust-Nera'  'Asia/Vientiane'  'Asia/Vladivostok'  'Asia/Yakutsk'  'Asia/Yekaterinburg'  'Asia/Yerevan'  'Atlantic/Azores'  'Atlantic/Bermuda'  'Atlantic/Canary'  'Atlantic/Cape_Verde'  'Atlantic/Faroe'  'Atlantic/Madeira'  'Atlantic/Reykjavik'  'Atlantic/South_Georgia'  'Atlantic/St_Helena'  'Atlantic/Stanley'  'Australia/Adelaide'  'Australia/Brisbane'  'Australia/Broken_Hill'  'Australia/Currie'  'Australia/Darwin'  'Australia/Eucla'  'Australia/Hobart'  'Australia/Lindeman'  'Australia/Lord_Howe'  'Australia/Melbourne'  'Australia/Perth'  'Australia/Sydney'  'Europe/Amsterdam'  'Europe/Andorra'  'Europe/Athens'  'Europe/Belgrade'  'Europe/Berlin'  'Europe/Bratislava'  'Europe/Brussels'  'Europe/Bucharest'  'Europe/Budapest'  'Europe/Busingen'  'Europe/Chisinau'  'Europe/Copenhagen'  'Europe/Dublin'  'Europe/Gibraltar'  'Europe/Guernsey'  'Europe/Helsinki'  'Europe/Isle_of_Man'  'Europe/Istanbul'  'Europe/Jersey'  'Europe/Kaliningrad'  'Europe/Kiev'  'Europe/Lisbon'  'Europe/Ljubljana'  'Europe/London'  'Europe/Luxembourg'  'Europe/Madrid'  'Europe/Malta'  'Europe/Mariehamn'  'Europe/Minsk'  'Europe/Monaco'  'Europe/Moscow'  'Europe/Oslo'  'Europe/Paris'  'Europe/Podgorica'  'Europe/Prague'  'Europe/Riga'  'Europe/Rome'  'Europe/Samara'  'Europe/San_Marino'  'Europe/Sarajevo'  'Europe/Simferopol'  'Europe/Skopje'  'Europe/Sofia'  'Europe/Stockholm'  'Europe/Tallinn'  'Europe/Tirane'  'Europe/Uzhgorod'  'Europe/Vaduz'  'Europe/Vatican'  'Europe/Vienna'  'Europe/Vilnius'  'Europe/Volgograd'  'Europe/Warsaw'  'Europe/Zagreb'  'Europe/Zaporozhye'  'Europe/Zurich'  'Indian/Antananarivo'  'Indian/Chagos'  'Indian/Christmas'  'Indian/Cocos'  'Indian/Comoro'  'Indian/Kerguelen'  'Indian/Mahe'  'Indian/Maldives'  'Indian/Mauritius'  'Indian/Mayotte'  'Indian/Reunion'  'Pacific/Apia'  'Pacific/Auckland'  'Pacific/Bougainville'  'Pacific/Chatham'  'Pacific/Chuuk'  'Pacific/Easter'  'Pacific/Efate'  'Pacific/Enderbury'  'Pacific/Fakaofo'  'Pacific/Fiji'  'Pacific/Funafuti'  'Pacific/Galapagos'  'Pacific/Gambier'  'Pacific/Guadalcanal'  'Pacific/Guam'  'Pacific/Honolulu'  'Pacific/Johnston'  'Pacific/Kiritimati'  'Pacific/Kosrae'  'Pacific/Kwajalein'  'Pacific/Majuro'  'Pacific/Marquesas'  'Pacific/Midway'  'Pacific/Nauru'  'Pacific/Niue'  'Pacific/Norfolk'  'Pacific/Noumea'  'Pacific/Pago_Pago'  'Pacific/Palau'  'Pacific/Pitcairn'  'Pacific/Pohnpei'  'Pacific/Port_Moresby'  'Pacific/Rarotonga'  'Pacific/Saipan'  'Pacific/Tahiti'  'Pacific/Tarawa'  'Pacific/Tongatapu'  'Pacific/Wake'  'Pacific/Wallis'</PARA>
+<PARA=TimeZone1>	ENUM	'Asia/Shanghai'  'Asia/Seoul' 'Europe/Dublin' 'Africa/Cairo' 'Atlantic/Canary' 'Australia/Perth' 'Indian/Mahe' 'Pacific/Fiji' 'America/Argentina/Salta'</PARA>
+<PARA=DateFormat> ENUM	 'mm/dd/yy' 'dd.mm.yyyy' 'dd/mm/yy' 'dd/mm/yyyy' 'yyyy/mm/dd' 'yyyy-mm-dd'</PARA>
+<PARA=NTPServer> ENUM	'3.cn.pool.ntp.ort' '2.cn.pool.ntp.ort' '1.cn.pool.ntp.ort' '0.cn.pool.ntp.ort'</PARA>
+<PARA=password>	ENUM	 'aaabc'  'aaaaab' 'aaaaabc' 'aaaaabc12345678' 'admin' </PARA>
+<PARA=passwordko>	ENUM	"aa" "aaaaabc123456789"</PARA>
+</TC>
+
+<TC=网络设置>
+<PARA=Connect>	ENUM	 'DHCP'  'PPPoE' 'Static IP'</PARA>
+<PARA=DHCP>    COMB
+    #DHCP start:2~253
+    #DHCP end:3~254
+    #lease time:0~9999    
+ 	"1,249,12" "254,255,123" "10,5,234" "12,255,1234" "12,25,-1" "12,55,100.5" "12,55,100000"
+</PARA>
+<PARA=PPPoE>    COMB
+    #USER
+    #Password   
+ 	'admin123,admin123'
+</PARA>
+<PARA=vlan>    COMB
+	#vlan Name:range1-5Digit
+    #vlan ID:range2-4094
+ 	'ddf,2'
+    "ddg_*&),4094"
+    "-1,12"
+    "asdf12,1"
+    "12345,4095"
+    'abcd1_,4093'
+</PARA>
+<PARA=vlanip>    COMB
+ 	'192.168.9.60,255.255.255.0,192.168.9.1'
+</PARA>
+<PARA=connectvia>	ENUM	'DHCP'  'PPPoE' 'Static IP' </PARA>
+<PARA=ippara>	ENUM	'192.168.9.60'  '255.255.255.0' '192.168.9.1' </PARA>
+</TC>
+
+#szw
+
+<TC=LTE邻频邻区>
+<PARA=QOFFSET列表>	ENUM	'-24' '-22' '-20' '-18' '-16' '-14' '-12' '-10' '-8' '-6'
+							'-5'  '-4'  '-3'  '-2'  '-1'  '0'   '1'  '2' '3' '4' '5'
+							'6' '8' '10' '12' '14' '16' '18' '20' '22' '24'
+</PARA>
+<PARA=邻频列表>	COMB 
+	#频点: 0 ~ 65535 
+	#电平: -70 ~ -22
+	#Q-OffsetRange:列表 -24~24 间隔2
+	#重选定时器：0~7
+	#重选优先级: 0~7
+	#重选门限高: 0~31
+	#重选门限低: 0~31
+	#P-MAX: -30~33
+	'0,-70,-24,0,0,0,0,-30'	-> ok
+	'65535,-22,24,7,7,31,31,33'	-> ok
+	'655,-30,20,5,5,20,20,20'	-> ok
+	"655,-40,10,5,5,20,20,20"	-> ko 频点重复
+	"-1,-70,-24,0,0,0,0,-30"	-> ko -1
+	"1abc2,-70,-24,0,0,0,0,-30"	-> ko 1abc2
+	"65536,-22,24,7,7,31,31,33"	-> ko 65536
+	'44400,-40,-18,3,3,13,3,23'	-> ok
+	"22233,,-16,3,3,13,3,23"	-> ko 参数空
+	"22233,-30,-16,,3,13,3,23"	-> ko 参数空
+	"22233,-30,-16,3,,13,3,23"	-> ko 参数空
+	"22233,-30,-16,3,3,,3,23"	-> ko 参数空
+	"22233,-30,-16,3,3,13,,23"	-> ko 参数空
+	"22233,-30,-16,3,3,13,3,"	-> ko 参数空
+	'44401,-40,18,3,3,13,3,23'	-> ok
+	"12345,-71,-24,0,0,0,0,-30"	-> ko -71
+	"12345,-21,-24,0,0,0,0,-30"	-> ko -21
+	'44402,-30,0,5,5,20,20,20'	-> ok
+	'44403,-30,0,5,5,20,20,20'	-> ok
+	"12345,-60,-24,-1,0,0,0,-30"	-> ko -1
+	"12345,-30,-24,8,0,0,0,-30"	-> ko 8
+	'44404,-30,0,5,5,20,20,20'	-> ok
+	'44405,-30,0,5,5,20,20,20'	-> ok
+	"12345,-60,-24,1,0,-1,0,-30"	-> ko -1
+	"12345,-30,-24,6,0,32,0,-30"	-> ko 32
+	'44434,-30,0,5,5,20,20,20'	-> ok
+	'44435,-30,0,5,5,20,20,20'	-> ok
+	"12345,-60,-24,1,0,1,0,-31"	-> ko -31
+	"12345,-30,-24,6,0,30,0,34"	-> ko 34
+	"39050,-50,-21,3,3,13,3,23"	-> ko 无效: -21不在列表中
+	"39250,-5,-16,3,3,13,3,23"	-> ko 范围错误：-5
+	'39149,-50,-18,3,3,13,3,23' -> ok
+	'39151,-30,-12,3,3,20,5,13'	-> ok
+	'39152,-30,-12,3,3,20,5,13'	-> ok
+	'39153,-30,-12,3,3,20,5,13'	-> ok
+	"459$a,-30,-12,3,3,20,5,13"	-> ko 特殊字符
+	"45999,-3#,-12,3,3,20,5,13"	-> ko 特殊字符
+	"45999,-30,-12,@1,3,20,5,13"	-> ko 特殊字符
+	"45999,-30,-12,3,3,2!0,5,13"	-> ko 特殊字符
+	"45999,-30,-12,3,3,20,^1,13"	-> ko 特殊字符
+	"45999,-30,-12,3,3,20,5,%3"	-> ko 特殊字符
+	'39154,-30,-12,3,3,20,5,13'	-> ok
+	'39155,-30,-12,3,3,20,5,13'	-> ok
+	'39156,-30,-12,3,3,20,5,13'	-> ok
+	'39157,-30,-12,3,3,20,5,13'	-> ok
+</PARA>
+<PARA=邻区列表>		COMB 
+	#PLMN: 5~6位整数
+	#Cell ID: 0~268435455
+	#FA:列表 从临频列表+本小区频点中选择 (可空)
+	#PCI: 0-503
+	#Qoffset: 列表
+	#CIO：列表
+	#TAC: 0-65535
+	'00000,0,,0,-24,-24,0'		-> ok
+	'12345,500,,400,-18,-18,300'		-> ok
+	"12346,500,,400,-18,-18,300"		-> ko PCI + Cell ID不能一样
+	"12345,500,,200,-18,-18,300"		-> ko 重复配置 plmn+cellid
+	'999999,268435455,,503,24,24,65535'		-> ok
+	"88877,268435455,,503,-16,-14,440"	-> ok PCI + Cell ID不能一样
+	"0000,50,,3,-24,-24,23"			-> ko 范围错误
+	"9999,50,,3,-24,-24,23"			-> ko 范围错误
+	"1000000,50,,3,-24,-24,23"			-> ko 范围错误
+	"54321,-1,,3,-24,-24,23"			-> ko 范围错误
+	"54321,268435456,,3,-24,-24,23"			-> ko 范围错误
+	'12347,500,,200,-18,-18,300'		-> ok
+	"54321,2000,,-1,-24,-24,23"		-> ko 范围错误
+	"54321,2000,,504,-24,-24,23"			-> ko 范围错误
+	'12348,500,,423,-18,-18,300'		-> ok
+	'12349,500,,203,-18,-18,300'		-> ok
+	"54321,2000,,2,-24,-24,-1"		-> ko 范围错误
+	"54321,2000,,502,-24,-24,65536"			-> ko 范围错误
+	'12345,551,,400,-18,-18,44'		-> ok
+	"22345,551,,400,-19,-18,44"		-> ko 无效: -19不在列表中
+	'12345,552,,400,-18,-18,44'		-> ok
+	'123456,551,,444,-18,-18,44'		-> ok
+	'333444,4551,,200,-16,-14,440'	-> ok
+	'333444,4552,,200,-16,-14,440'	-> ok
+	'333444,4553,,200,-16,-14,440'	-> ok
+	"22233,,,200,-16,-14,440"		-> ko 参数空
+	"22233,5555,,,-16,-14,440"		-> ko 参数空
+	"22233,5555,,200,,-14,440"		-> ko 参数空
+	"22233,5555,,200,-16,,440"		-> ko 参数空
+	'333444,4554,,200,-16,-14,440'	-> ok
+	'333444,4555,,200,-16,-14,440'	-> ok
+	'333441,4550,,200,-16,-14,440'	-> ok
+	'333443,4550,,202,-16,-14,440'	-> ok
+	"77#43,4550,,202,-16,-14,440"	-> ko 特殊字符
+	"77443,45&0,,202,-16,-14,440"	-> ko 特殊字符
+	"77443,4550,,20@,-16,-14,440"	-> ko 特殊字符
+	"77443,4550,,202,-16,-14,4&%0"	-> ko 特殊字符
+	'333444,4550,,203,-16,-14,440'	-> ok
+	'333445,4550,,204,-16,-14,440'	-> ok
+	'333446,4550,,205,-16,-14,440'	-> ok
+	'333447,4550,,206,-16,-14,440'	-> ok
+	'333448,4550,,207,-16,-14,440'	-> ok 最大门限16
+</PARA>
+</TC>
+
+<TC=TDS邻频邻区>
+<PARA=邻频列表>	COMB 
+	#TDD模式：列表 UTRA_TDD_128, UTRA_TDD_384, UTRA_TDD_768
+	#Bands：列表 ABCDEF (128), ABCD(384,768)
+	#频点: 与TDD模式和Band相关
+	#电平: -60 ~ -13
+	#重选优先级: 0~7
+	#重选门限高: 0~31
+	#重选门限低: 0~31
+	#P-MAX: -50~33
+	#小区频率差: -15~15
+	'UTRA_TDD_128,A,9505,-60,0,0,0,-50,-15'	-> ok
+	"UTRA_TDD_128,A,9505,-50,5,5,5,5,5"	-> ko 频点重复
+	'UTRA_TDD_128,A,9595,-13,7,31,31,33,15'	-> ok
+	'UTRA_TDD_128,A,10055,-60,0,0,0,-50,-15'	-> ok
+	'UTRA_TDD_128,A,10120,-13,7,31,31,33,15'	-> ok
+	"UTRA_TDD_128,A,9504,-60,0,0,0,-50,-15"	-> ko 范围
+	"UTRA_TDD_128,A,9596,-13,7,31,31,33,15"	-> ko 范围
+	"UTRA_TDD_128,A,10054,-60,0,0,0,-50,-15"	-> ko 范围
+	"UTRA_TDD_128,A,10121,-13,7,31,31,33,15"	-> ko 范围
+	'UTRA_TDD_128,B,9255,-60,0,0,0,-50,-15'	-> ok
+	'UTRA_TDD_128,B,9545,-13,7,31,31,33,15'	-> ok
+	'UTRA_TDD_128,B,9655,-60,0,0,0,-50,-15'	-> ok
+	'UTRA_TDD_128,B,9945,-13,7,31,31,33,15'	-> ok
+	"UTRA_TDD_128,B,9254,-60,0,0,0,-50,-15"	-> ko 范围
+	"UTRA_TDD_128,B,9546,-13,7,31,31,33,15"	-> ko 范围
+	"UTRA_TDD_128,B,9654,-60,0,0,0,-50,-15"	-> ko 范围
+	"UTRA_TDD_128,B,9946,-13,7,31,31,33,15"	-> ko 范围
+	'UTRA_TDD_128,C,9555,-60,0,0,0,-50,-15'	-> ok
+	'UTRA_TDD_128,C,9645,-13,7,31,31,33,15'	-> ok
+	"UTRA_TDD_128,C,9554,-60,0,0,0,-50,-15"	-> ko 范围
+	"UTRA_TDD_128,C,9646,-13,7,31,31,33,15"	-> ko 范围
+	'UTRA_TDD_128,D,12855,-60,0,0,0,-50,-15'	-> ok
+	'UTRA_TDD_128,D,13095,-13,7,31,31,33,15'	-> ok
+	"UTRA_TDD_128,D,12854,-60,0,0,0,-50,-15"	-> ko 范围
+	"UTRA_TDD_128,D,13096,-13,7,31,31,33,15"	-> ko 范围
+	'UTRA_TDD_128,E,11505,-60,0,0,0,-50,-15'	-> ok
+	'UTRA_TDD_128,E,11995,-13,7,31,31,33,15'	-> ok
+	"UTRA_TDD_128,E,11504,-60,0,0,0,-50,-15"	-> ko 范围
+	"UTRA_TDD_128,E,11996,-13,7,31,31,33,15"	-> ko 范围
+	
+	'UTRA_TDD_128,F,9405,-60,0,0,0,-50,-15'	-> ok
+	<UTRA_TDD_128,F,9595,-13,7,31,31,33,15>	-> ok
+	"UTRA_TDD_128,F,9404,-60,0,0,0,-50,-15"	-> ko 范围
+	"UTRA_TDD_128,F,9596,-13,7,31,31,33,15"	-> ko 范围
+	
+	'UTRA_TDD_384,A,9513,-60,0,0,0,-50,-15'	-> ok
+	'UTRA_TDD_384,A,9587,-13,7,31,31,33,15'	-> ok
+	'UTRA_TDD_384,A,10063,-60,0,0,0,-50,-15'	-> ok
+	'UTRA_TDD_384,A,10112,-13,7,31,31,33,15'	-> ok
+	"UTRA_TDD_384,A,9512,-60,0,0,0,-50,-15"	-> ko 范围
+	"UTRA_TDD_384,A,9588,-13,7,31,31,33,15"	-> ko 范围
+	"UTRA_TDD_384,A,10062,-60,0,0,0,-50,-15"	-> ko 范围
+	"UTRA_TDD_384,A,10113,-13,7,31,31,33,15"	-> ko 范围
+	'UTRA_TDD_384,B,9263,-60,0,0,0,-50,-15'	-> ok
+	'UTRA_TDD_384,B,9537,-13,7,31,31,33,15'	-> ok
+	'UTRA_TDD_384,B,9663,-60,0,0,0,-50,-15'	-> ok
+	'UTRA_TDD_384,B,9937,-13,7,31,31,33,15'	-> ok
+	"UTRA_TDD_384,B,9262,-60,0,0,0,-50,-15"	-> ko 范围
+	"UTRA_TDD_384,B,9538,-13,7,31,31,33,15"	-> ko 范围
+	"UTRA_TDD_384,B,9662,-60,0,0,0,-50,-15"	-> ko 范围
+	"UTRA_TDD_384,B,9938,-13,7,31,31,33,15"	-> ko 范围
+	'UTRA_TDD_384,C,9563,-60,0,0,0,-50,-15'	-> ok
+	'UTRA_TDD_384,C,9637,-13,7,31,31,33,15'	-> ok
+	"UTRA_TDD_384,C,9562,-60,0,0,0,-50,-15"	-> ko 范围
+	"UTRA_TDD_384,C,9638,-13,7,31,31,33,15"	-> ko 范围
+	'UTRA_TDD_384,D,12863,-60,0,0,0,-50,-15'	-> ok
+	'UTRA_TDD_384,D,13087,-13,7,31,31,33,15'	-> ok
+	"UTRA_TDD_384,D,12862,-60,0,0,0,-50,-15"	-> ko 范围
+	"UTRA_TDD_384,D,13088,-13,7,31,31,33,15"	-> ko 范围
+	
+	<UTRA_TDD_768,A,9513,-60,0,0,0,-50,-15>	-> ok
+	<UTRA_TDD_768,A,9587,-13,7,31,31,33,15>	-> ok
+	<UTRA_TDD_768,A,10063,-60,0,0,0,-50,-15>	-> ok
+	<UTRA_TDD_768,A,10112,-13,7,31,31,33,15>	-> ok 与384 A冲突
+	"UTRA_TDD_768,A,9512,-60,0,0,0,-50,-15"	-> ko 范围
+	"UTRA_TDD_768,A,9588,-13,7,31,31,33,15"	-> ko 范围
+	"UTRA_TDD_768,A,10062,-60,0,0,0,-50,-15"	-> ko 范围
+	"UTRA_TDD_768,A,10113,-13,7,31,31,33,15"	-> ko 范围
+	<UTRA_TDD_768,B,9263,-60,0,0,0,-50,-15>	-> ok
+	<UTRA_TDD_768,B,9537,-13,7,31,31,33,15>	-> ok
+	<UTRA_TDD_768,B,9663,-60,0,0,0,-50,-15>	-> ok
+	<UTRA_TDD_768,B,9937,-13,7,31,31,33,15>	-> ok
+	"UTRA_TDD_768,B,9262,-60,0,0,0,-50,-15"	-> ko 范围
+	"UTRA_TDD_768,B,9538,-13,7,31,31,33,15"	-> ko 范围
+	"UTRA_TDD_768,B,9662,-60,0,0,0,-50,-15"	-> ko 范围
+	"UTRA_TDD_768,B,9938,-13,7,31,31,33,15"	-> ko 范围
+	<UTRA_TDD_768,C,9563,-60,0,0,0,-50,-15>	-> ok
+	<UTRA_TDD_768,C,9637,-13,7,31,31,33,15>	-> ok
+	"UTRA_TDD_768,C,9562,-60,0,0,0,-50,-15"	-> ko 范围
+	"UTRA_TDD_768,C,9638,-13,7,31,31,33,15"	-> ko 范围
+	'UTRA_TDD_768,D,12875,-60,0,0,0,-50,-15'	-> ok
+	'UTRA_TDD_768,D,13075,-13,7,31,31,33,15'	-> ok
+	"UTRA_TDD_768,D,12874,-60,0,0,0,-50,-15"	-> ko 范围
+	"UTRA_TDD_768,D,13076,-13,7,31,31,33,15"	-> ko 范围
+	
+	"UTRA_TDD_128,A,9505,-61,0,0,0,-50,-15"	-> ko 电平
+	"UTRA_TDD_128,A,9595,-12,7,31,31,33,15"	-> ko 电平
+	"UTRA_TDD_128,A,9505,-60,-1,0,0,-50,-15"	-> ko 
+	"UTRA_TDD_128,A,9595,-13,8,31,31,33,15"	-> ko 
+	"UTRA_TDD_128,A,9505,-60,0,-1,0,-50,-15"	-> ko 
+	"UTRA_TDD_128,A,9595,-13,0,32,31,33,15"	-> ko 
+	"UTRA_TDD_128,A,9505,-60,0,0,0,-51,-15"	-> ko 
+	"UTRA_TDD_128,A,9595,-13,0,31,31,34,15"	-> ko 
+	"UTRA_TDD_128,A,9505,-60,0,0,0,-50,-16"	-> ko 
+	"UTRA_TDD_128,A,9595,-13,0,31,31,33,16"	-> ko 
+	
+	'UTRA_TDD_128,D,12880,-40,3,4,5,23,10'	-> ok
+	"UTRA_TDD_128,D,12881,-10,3,4,5,23,10"	-> ko 范围错误：-10
+	'UTRA_TDD_384,C,9566,-20,3,4,5,23,10' -> ok
+	'UTRA_TDD_768,A,10100,-20,3,4,5,23,10' -> ok
+	'UTRA_TDD_128,B,9300,-50,3,4,5,23,10'	-> ok
+	'UTRA_TDD_128,F,9500,-50,3,4,5,23,10'	-> ok
+	"UTRA_TDD_128,F,9600,-50,3,4,5,23,10"	-> ko 范围错误：9600
+	'UTRA_TDD_128,E,11600,-50,3,4,5,33,10'	-> ok
+	"UTRA_TDD_128,E,11601,-50,8,4,5,33,10"	-> ko 范围错误：8
+	<UTRA_TDD_384,B,9300,-50,3,4,5,33,10>	-> ok 和128 B冲突
+</PARA>
+<PARA=邻区列表>		COMB 
+	#频点:从临频列表中选择 
+	#PLMN: 5~6位整数 (PLMN+RNC+CellID不能一样)
+	#CellID: 1~65535
+	#RNC: 0-65535
+	#PSC: 0-127
+	#LAC: 0-65535
+	',00000,1,0,0,0'			-> ok
+	',999999,65535,65535,127,65535'	-> ok
+	",9999,1,0,0,0"			-> ko PLMN
+	",1000000,65535,65535,127,65535"	-> ko PLMN
+	",10000a,1,0,0,0"			-> ko PLMN
+	',12345,101,100,50,100'			-> ok
+	",12345,101,100,60,120"			-> ko 重复配置 plmn+cellid+rnc
+	",12346,0,100,50,100"			-> ko CellID
+	",12347,65536,100,50,100"			-> CellID
+	',22345,102,100,50,100'			-> ok
+	",22346,100,-1,50,100"			-> ko RNC
+	",22347,100,65536,50,100"			-> ko RNC
+	',32345,103,100,50,100'			-> ok
+	",32346,100,100,-1,100"			-> ko PSC
+	",32347,100,100,128,100"			-> ko PSC
+	',423451,104,100,50,100'			-> ok
+	",423461,100,100,50,-1"			-> ko LAC
+	",423471,100,100,50,65536"			-> ko LAC
+	',00000,50,434,127,132'			-> ok
+	",0000,50,435,120,132"			-> ko 范围错误
+	',12345,500,200,100,300'		-> ok
+	',333444,500,201,100,65535'		-> ok
+	',23456,1,65535,0,0'			-> ok
+	',23456,65535,65535,127,65535'	-> ok
+	",13456,0,65535,127,65535"		-> ko 范围错误
+	',33456,1,65500,1,0'			-> ok
+	',143456,1,65,22,555'			-> ok
+	',423456,1,655,44,111'			-> ok
+</PARA>
+</TC>
+
+<TC=GSM邻频邻区>
+<PARA=邻频列表>	COMB 
+	#Band：列表 GSM850/GSM900/DCS1800/PCS1900
+	#频点: 和Band相关
+	#重选门限高: 0~31
+	#重选门限低: 0~31
+	#重选优先级: 0~7
+	#电平: 0 ~ 45
+	'GSM850,128,0,0,0,0'	-> ok
+	"GSM850,128,1,2,3,4"	-> ko 频点重复
+	'GSM850,251,31,31,7,45'	-> ok
+	"GSM850,127,0,0,0,0"	-> ko 范围错误
+	"GSM850,252,31,31,7,45"	-> ko 范围错误
+	'GSM900,0,0,0,0,0'	-> ok
+	'GSM900,124,31,31,7,45'	-> ok
+	'GSM900,975,0,0,0,0'	-> ok
+	'GSM900,1023,31,31,7,45'	-> ok
+	"GSM900,-1,0,0,0,0"	-> ko 范围错误
+	"GSM900,125,31,31,7,45"	-> ko 范围错误
+	"GSM900,974,0,0,0,0"	-> ko 范围错误
+	"GSM900,1024,31,31,7,45"	-> ko 范围错误
+	'DCS1800,512,0,0,0,0'	-> ok
+	'DCS1800,885,31,31,7,45'	-> ok
+	"DCS1800,511,0,0,0,0"	-> ko 范围错误
+	"DCS1800,886,31,31,7,45"	-> ko 范围错误
+	<PCS1900,512,0,0,0,0>	-> ok 和DCS1800冲突
+	'PCS1900,810,31,31,7,45'	-> ok
+	"PCS1900,511,0,0,0,0"	-> ko 范围错误
+	"PCS1900,811,31,31,7,45"	-> ko 范围错误
+	"GSM900,1000,-1,10,5,40"	-> ko 范围错误
+	"GSM900,1000,10,32,5,40"	-> ko 范围错误
+	"GSM900,1000,10,10,-1,40"	-> ko 范围错误
+	"GSM900,1000,10,10,8,40"	-> ko 范围错误
+	"GSM900,1000,10,10,7,-1"	-> ko 范围错误
+	"GSM900,1000,10,10,7,46"	-> ko 范围错误
+	'DCS1800,600,2,3,4,5' -> ok
+	'PCS1900,800,5,3,4,5'	-> ok
+	'GSM850,200,10,10,7,45'	-> ok
+	"GSM900,100,50,3,4,5"	-> ko 范围错误：50
+	'GSM850,250,10,10,7,45'	-> ok
+	'GSM850,249,10,10,7,45'	-> ok
+	'GSM850,248,30,30,3,4'	-> ok
+</PARA>
+<PARA=邻区列表>		COMB 
+	#频点:从临频列表中选择 
+	#PLMN: 5~6位整数 (频点+PLMN不能一样)
+	#LAC: 1-65535
+	#BSIC: 0-63
+	#CellID: 0~65535
+	',00000,1,0,0'			-> ok
+	',999999,65533,63,65535'	-> ok
+	",9999,1,0,0"			-> ko PLMN
+	",1000000,65533,63,65535"	-> ko PLMN
+	",10000a,1,0,0"			-> ko PLMN
+	',12345,100,50,100'			-> ok
+	",12346,0,50,100"			-> ko LAC
+	",12347,65534,50,100"			-> ko LAC
+	',22345,100,50,100'			-> ok
+	",22346,100,-1,100"			-> ko BSIC
+	",22347,100,64,100"			-> ko BSIC
+	',32345,100,50,100'			-> ok
+	",32346,100,50,-1"			-> ko CellID
+	",32347,100,50,65536"			-> ko CellID
+	',00001,50,34,127'			-> ok
+	",0000,50,35,120"			-> ko 范围错误
+	',00002,50,34,127'			-> ok
+	",0000,50,35,120"			-> ko 范围错误
+	',42345,500,20,100'			-> ok
+	',42346,500,20,100'			-> ok
+	',42347,500,20,101'			-> ok
+	',32346,500,20,102'			-> ok
+	",42348,500,200,100"		-> ko 范围错误
+</PARA>
+</TC>
+
+<TC=IPSEC-MMEPOOL>
+<PARA=IKEPORT> 		ENUM	'4500'  '500'  </PARA>
+<PARA=IPSECTUNNEL配置>	COMB 
+	#启用: 开|关 Enable|Disable
+	#Tunnul Name: 1-10位字符串
+	#网关: IP地址
+	#Right Subnet/Mask：IP地址/掩码
+	#Left Id: 0-48位字符串
+	#Right Id: 0-48位字符串
+	#AuthBy: psk | cert | aka_psk | aka_cert
+	#preshared key: 
+	#Left SourceIP: CheckBox
+	'E,a,10.10.10.10,20.20.20.20/255.255.255.0;20.30.20.20/255.255.255.0;40.20.20.20/255.255.0.0,leftid,rightid,psk,presharedkey,'	-> ok
+	'D,1a2b3c4d5e,10.12.10.10,20.22.20.20/255.255.255.0;20.32.20.20/255.255.255.0;40.22.20.20/255.255.0.0,leftid,rightid,psk,presharedkey,'	-> ok
+	"E,1a2b3c4d5e,10.12.10.10,20.22.20.20/255.255.255.0;20.32.20.20/255.255.255.0;40.22.20.20/255.255.0.0,leftid,rightid,psk,presharedkey,"	-> ko 名称重复
+	"D,#*abc,10.10.10.11,20.20.20.20/255.255.255.0,leftid,rightid,psk,presharedkey,"	-> ko  Tunnel Name
+	"E,abc12345678,10.10.10.11,20.20.20.20/255.255.255.0,leftid,rightid,psk,presharedkey,"	-> ko  Tunnel Name
+	'D,qwe,10.10.10.12,20.20.20.20/255.200.255.0;20.20.20a.20/255.255.255.0,leftid,rightid,psk,presharedkey,'	-> ok  即使掩码错误
+	"E,abcde,10.10.10.12,20.20.20.20/255.255.255.0,leftid,rightid,psk,presharedkey,"	-> ko 网关重复
+	'D,abcde54321,90.12.10.10,90.22.20.20/255.255.255.0;90.32.20.20/255.255.255.0;90.22.20.20/255.255.0.0,leftid,rightid,psk,presharedkey,'	-> ok
+	'D,abcde54322,800.12.10.10,80.22.20.20/255.255.255.0;80.32.20.20/255.255.255.0;80.22.20.20/255.255.0.0,leftid,rightid,psk,presharedkey,'	-> ko 网关地址错误， URL?
+	'E,qwertyuiop,10.10.10.14,20.20.20.20/255.255.255.0,leftid,rightid,psk,presharedkey,'	-> ok rightsubnet冲突， 也能成功
+	'D,abcde54323,90.12.10.10,90.22.20.20/255.255.255.0;90.32.20.20/255.255.255.0;90.22.20.20/255.255.0.0,leftid,rightid,psk,presharedkey,'	-> ok
+	'D,ewq,10.10.10.13,20.20.20.20/255.255.255.0,leftid,rightid,psk,presharedkey,1.1.1.1'	-> ok with leftsourceip
+	'E,qwerty1,11.10.10.14,21.20.20.20/255.255.255.0,,,psk,presharedkey,'	-> ok
+	"E,qwerty2,31.10.10.14,31.20.20.20/255.255.255.0,abc$_#123,abcef,psk,presharedkey,3.3.3.3"	-> ko leftid
+	'E,qwerty3,31.10.10.14,31.20.20.20/255.255.255.0,9876543210987654321098765432109876543210abcdefgh,abcdefghijABCDEFGHIJabcdefghijABCDEFGHIJ12345678,psk,presharedkey,'	-> ok
+	"D,qwerty4,11.10.10.15,21.20.20.20/255.255.255.0,9876543210987654321098765432109876543210abcdefghI,rightid,psk,presharedkey,"	-> ko
+	'D,qwert123,10.30.10.14,20.20.20.20/255.255.255.0,leftid,rightid,psk,presharedkey,4.4.4.4' -> ok 带leftsourceip
+	'E,qwert124,11.30.10.14,20.20.20.20/255.255.255.0,leftid,rightid,psk,abc@$1234,4.4.4.4' -> ok
+	<E,qwert125,12.30.10.14,20.20.20.20/255.255.255.0,leftid,rightid,psk,presharedkey,257.14.24.34> -> ko
+</PARA>
+<PARA=MMEPOOL-IP>	COMB 
+	#MME 1 IP：xx.xx.xx.xx;yy.yy.yy.yy;zz.zz.zz.zz
+	#MME 2 IP：xx.xx.xx.xx;yy.yy.yy.yy;zz.zz.zz.zz
+	'10.20.20.20;10.30.20.20;40.20.20.20,10.20.20.20;10.30.20.20;40.20.20.20'	-> ok MME1和MME2 IP可配置一样
+	"10.20.20.300;10.30.20.a20;40..20.20.20,10.20.20.20;10.30.20.20;40.20.20.20"	-> ko MME1 IP全错
+	'10.20.20.300;10.30.20.a20;50.20.20.20;60.2$.@2.20,10.20.20.20;10.30.20.20;40.20.20.20'	-> ok MME1 IP部分错
+	'11.20.20.20;11.30.20.20;41.20.20.20;42.20.20.20;43.20.20.20;43.20.20.20,10.20.20.20;10.30.20.20;40.20.20.20'	-> ok MME1 IP有重复
+	"10.20.20.20;10.30.20.20;40.20.20.20,10.20.20.300;10.30.20.a20;40..20.20.20"	-> ko MME2 IP全错
+	'10.20.20.20;10.30.20.20;40.20.20.20,10.20.20.300;10.30.20.a20;50.20.20.20'	-> ok MME2 IP部分错
+</PARA>
+</TC>
+
+
+#LP
+# LMT-网络设置-LGW 测试参数
+<TC=LMT_LGW>
+<PARA=ONOFF>    ENUM    'Disable-WC' 'Enable-WO' </PARA>  # LGW开关预期值及窗口状态WC：窗口打开 WO：窗口关闭
+<PARA=MODE>     ENUM    'NAT-WO' 'Router-WO' 'Bridge-WC' </PARA> # LGW模式预期值及IPPOOL窗口状态
+<PARA=WINDOW_STC> ENUM  'NAT-WC' 'Router-WO' 'Bridge-WC' </PARA> # 静态地址窗口状态
+<PARA=PORT>     ENUM    'wan' 'pppoe' </PARA>
+<PARA=IPPOOL>	ENUM    "1111" "111.111.111" "abbb" "@#$%^&" "" ‘255.255.255.0’ "255.255.255.255" ‘255.255.255.128’ ‘255.255.255.224’ ‘255.255.255.240’, ‘255.255.255.248’</PARA>
+<PARA=NETMASK>  ENUM    '255.255.255.0' '255.255.255.128' '255.255.255.192' '255.255.255.224' '255.255.255.240' '255.255.255.248' </PARA>
+<PARA=STIP>     ENUM    'Disable-WC' 'Enable-WO'</PARA>
+<PARA=SPECIP>   ENUM    '0' '255' '128' '224' '240' 248' </PARA>
+<PARA=STINPUT>  ENUM
+                  # 检查开始地址输入框
+                  "10.244.30.24"
+                  "192.168.0."
+                  "192.168.0.a"
+                  "192.168.0.0"
+                  ""
+                  "a.b.c.d"
+                  "192-179-244-103"                    
+</PARA>
+<PARA=IMSI>    ENUM
+               # IMSI输入框错误检查
+               "99999999999999"
+               "1000000000000000"
+               "1000000000000.00"
+               "*&^@@#"
+               ""
+               "1 23456789010234"
+</PARA>
+<PARA=IMSIP>   ENUM
+              "192.168.0.0"
+               ""
+               "192.168.0.201"
+               "*1238**"
+               "192.168.0"   
+</PARA>     
+<PARA=ALL>    COMB
+           # 选择模式，掩码，及添加数量
+           'Router,255.255.255.0,32'
+           'Router,255.255.255.224,16'
+           'Router,255.255.255.192,24'
+           'Router,255.255.255.248,6' 
+           "Router,255.255.255.0,33"
+</PARA>
+</TC>
+
+
+# LMT-网络设置-VLAN 测试参数
+<TC=VLAN_CFG>
+<PARA=VLAN1>    ENUM    "0000000000000000" "#1" "a@" "*" "1.0" ""</PARA>
+<PARA=VLAN2>    ENUM    "1"  "4095" "a" "%" "2.0" "3a" "5a)" ""</PARA>
+<PARA=VLAN3>    ENUM    'DHCP' 'Static' </PARA>
+<PARA=VLAN4>    ENUM    "a" "0.0.0.0" "255.255.255.255" "192.168.1" "&*#1" ""</PARA>
+<PARA=VLAN5>    ENUM    "a" "0.0.0.0" "255.255.255." "255.255.255.1" "" </PARA>
+<PARA=DHCP>     DIGIT    '10' </PARA>
+<PARA=STATIC>   DIGIT    '10' </PARA>
+<PARA=NUM>      DIGIT    '10' </PARA>
+<PARA=NUM1>      DIGIT    '10' </PARA>
+<PARA=NUM2>      DIGIT    '10' </PARA>
+<PARA=SPECAL>   COMB
+                "192.168.100.2,255.255.255.0,192.168.100.1,192.168.100.11,255.255.255.248,192.168.100.1"
+                "192.168.100.2,255.255.255.0,192.168.100.1,192.168.100.64,255.255.255.192,192.168.100.1"
+                "192.167.100.2,255.255.0.0,192.167.100.1,192.167.123.11,255.255.255.0,192.167.123.1,"
+                "192.167.100.2,255.255.0.0,192.167.100.1,192.167.100.11,255.255.255.248,192.167.100.1"
+</PARA>
+<PARA=GATE>     COMB
+                '192.167.1.11,255.255.192.0,192.167.0.1'
+                '192.166.1.11,255.255.192.0,192.166.63.254'
+                '127.11.11.11,255.255.0.0,127.11.1.255'
+                '126.11.11.11,255.255.0.0,126.11.254.0'
+                "192.169.1.11,255.255.255.0,192.168.1.0"
+                "192.168.1.11,255.255.255.248,192.168.1.15"
+                "192.170.2.15,255.255.255.248,192.170.2.8"
+</PARA>
+<PARA=WANIP>    ENUM  "192.168.150.1" "255.255.255.0" </PARA>
+<PARA=DELETE>   COMB
+                '192.160.2.11,255.255.192.0,192.160.2.12'
+                '192.200.1.172,255.255.255.0,192.200.1.1'
+                '120.1.1.1,255.255.0.0,120.1.255.10'
+</PARA>
+</TC>
+
+
+# LMT-基站设置-安全设置 测试参数
+<TC=SST_CFG>
+<PARA=CIPHERING>    ENUM   '128-EEA1' '128-EEA2' '128-EEA3' 'EEA0' </PARA> # 支持的加密算法类型
+<PARA=INTEGRITY>    ENUM   '128-EIA1' '128-EIA2' '128-EIA3' </PARA>  # 支持的完整性保护算法
+</TC>
+
+# LMT-基站设置-网管设置 测试参数
+<TC=MST_CFG>
+<PARA=MSADDRESS>    ENUM   '0'  '9999999999999999999999' 'http://www.vimlinux.com/' '192.168.32.1’'@! ()+_' 'abcdefghijklmn'  'www.#baidu.com' "" ' '</PARA>
+<PARA=MSB>          ENUM    '10' </PARA>
+<PARA=CKEY>         ENUM   "1234567" "abcEFGH" "-1" "0.001" "@#@#*&" "@123" '' '1' 'aa' 'AAA' '1111' '00000' 'AAAaaa' '11zzAA' </PARA>
+<PARA=CKEYB>     ENUM    '10' </PARA>
+</TC>
+
+<TC=SS_CFG>
+<PARA=PLMN>    ENUM    '00000' '999999' '50000' "0" "-10" "10000.0" "hello" "#@$" "" </PARA>
+<PARA=PLMNB>   ENUM    '10' </PARA>
+<PARA=BAND>    ENUM    '38' '39' '40' </PARA>
+<PARA=FREQUENCY>    ENUM    '37900-38200-10-2585-2615-1-38' '38300-38600-10-1885-1915-1-39' '38700-39600-10-2305-2395-1-40' </PARA>
+<PARA=GPSSYNC>     ENUM    'Disable' 'Enable' </PARA>
+<PARA=1588SYNC>    ENUM    'Disable' 'Enable' </PARA>
+<PARA=GPS>         ENUM    '1' '2'  # 开：GPS同步开关，1,2代表第2、3个开关不能同时打开</PARA>
+<PARA=ALL>         ENUM    '10'  </PARA>
+</TC>
+
+#### LMT-LTE-移动性参数 测试输入 ####
+
+<TC=LTE_CFG>
+
+## A1事件门限参数 ##
+
+# A1特殊值输入（边界值和非法值）#
+
+<PARA=A1>    ENUM    '0' '97' '50' "-1" "1.111" "98" "abc" "@#$" "1a" "" </PARA>
+
+# A1正常随机值验证个数（0-97整数） #
+
+<PARA=A1B>   ENUM    '10' </PARA>
+
+## A2事件门限参数 ##
+
+# A2特殊值输入（边界值和非法值）
+
+<PARA=A2>    ENUM    '0' '97' '50' "-1" "1.111" "98" "abc" "@#$" "1a" "" </PARA>
+
+# A2正常随机值验证个数（0-97整数） #
+
+<PARA=A2B>   ENUM    '10' </PARA>
+
+
+## A3事件门限参数 ##
+
+# A3特殊值输入（非法值）
+
+<PARA=A3>    ENUM    "-31" "1.0" "31" "abcd" "%^&*"  "1a" s""</PARA>
+
+# A3两个输入框逻辑检查输入
+<PARA=A3ALL>	COMB 
+	# 同频切换: (-30)-30 整数
+	# 同频ANR切换: (-30)-30 整数 且不能大于同频切换A3事件偏移量
+	"29,30"     
+	"-30,-29"
+        "0,1"
+        "31,30"
+        "-30,-31"
+        '-30,-30'
+        '30,30'
+        '-29,-30'
+        '30,29' 
+</PARA>
+
+# A3两个输入框正常随机值测试个数
+
+<PARA=A3B>   ENUM    '10' </PARA>
+
+
+<PARA=A5>    ENUM    "-1" "1.0" "98" "abcdefg" "%@!&*(*)" "1a" "" </PARA>
+
+<PARA=A5B>   ENUM    '10' </PARA>
+<PARA=A5ALL> COMB
+    # 异频切换A5 RSRP阈值1：0-97
+    # 异频切换A5 RSRP阈值2：0-97
+    # 异频ANR A5 RSRP阈值1:  0-97 整数 且不能小于异频切换A5 RSRP阈值1
+    # 异频ANR A5 RSRP阈值2:  0-97 整数 且不能大于异频切换A5 RSRP阈值2
+    "0,0,1,1"
+    "1,1,0,0"
+    "97,96,96,97"
+    "1,0,0,1"
+    "25,59,24,60"
+    '0,0,0,0'
+    '97,97,97,97'
+    '0,1,1,0'
+    '96,97,97,96'
+    '45,46,79,10'
+    '0,97,97,0'
+</PARA>
+<PARA=B2A>    ENUM    "-1" "1.0" "98" "abcedf" "*&^%$@" "3a3" "" "1#" '1' '0' '97'</PARA>
+<PARA=B2B>    ENUM    "-6" "0.11" "92" "efgsees" "()_+1" "(1)" "" '-5' '91'</PARA>
+<PARA=B2C>    ENUM    "-1" "1.22" "64" "adrtgssf" "@#%" "1a%" "" '9' '63'</PARA>
+<PARA=BB2>    ENUM    '10' </PARA>
+<PARA=B2ALL>  COMB
+    #　UTRA TDS B2 阈值1：0-97 整数
+　  # UTRA TDS B2 阈值2： (-5)-91 整数
+    # GERAN B2 阈值1： 0-97 整数
+    # GERAN B2 阈值2： 0-63 整数
+    "-1,-6,-1,-1"
+    "98,92,98,64"
+    '0,-5,0,0'
+    '97,91,97,63'
+    '0,0,0,0'
+    '1,2,3,4'
+    '40,60,77,45'
+</PARA>
+<PARA=MCP1>    ENUM    "-1" "1.0" "31" "abc" "#@$" "11111$$$$$$" '0' '30' '14' </PARA>
+<PARA=MCP2>    ENUM    '0' '40' '64' '80' '100' '128' '160' '256' '320' '480' '512' '640' '1024'
+                       '1280' '2560' '5120'  </PARA>
+<PARA=CSP1>    ENUM    "-71" "-22.0" "-21" "abc" "" '-70' '-22' '-23' </PARA>
+<PARA=CSP2>    ENUM    "0" "-1" "1.0" "9" "anc" "" '1' '8' '4' </PARA>
+<PARA=CSPB>    ENUM    '10'
+<PARA=CSPALL>  COMB
+               "-71,0"
+               "-21,9"
+               '-70,8'
+               '-22,1'
+</PARA>
+<PARA=CSA1>   ENUM    "-1" "1.0" "32" "abc" "#@$" "11111$$$$$$" '0' '31' '14' </PARA>
+<PARA=CSA2>   ENUM    "-71" "-22.0" "-21" "abc" "" '-70' '-22' '-23' </PARA>
+<PARA=CSA3>   ENUM    "-1" "1.0" "8" "anc" "" '0' '7' '4' </PARA>
+<PARA=CSA4>   ENUM    '0' '1' '2' '3' '4' '5' '6' '8' '10' '12' '14' '16' '18' '20' '22' '24' </PARA>
+<PARA=CSA5>   ENUM    'n15' 'n25' 'n50' 'n75' 'n100' </PARA>
+<PARA=CSAB>   ENUM    '10'
+<PARA=CSALL>  COMB
+              # 同频小区重选门限：0-31整数
+              # 非同频小区重选门限： 0-31整数
+              # 小区重选最小接收功率（dBm）: (-70)-(-22)
+              # 小区重选迟滞值:0-8 10-24 整数
+              # 重选优先级：0-7整数
+              # 向低优先级小区重选门限：0-31整数
+              # 测试带宽：n15、n25、n50、n75、n100
+              '0,0,-70,0,0,0,n15'
+              '31,31,-22,24,7,31,n100'
+              '0,0,-22,24,7,31,n75'
+              '14,14,-24,14,7,14,n50'
+              '0,0,-70,0,0,0,n15'
+              '7,7,-70,6,7,7,n75'
+              "-1,-1,-1,1,-1,-1,n100"
+              "10,19,-21,10,4,23,n100"
+              "32,32,-64,16,8,32,n100"
+              "31,31,-70,4,6,n100,n100"
+</PARA>
+<PARA=ALL> COMB
+           '0,0,-30,-30,0,0,0,0,0,-5,0,0,0,0,-70,1,0,0,-70,0,0,0,n15'
+           '97,97,30,30,97,97,97,97,97,91,97,63,30,5120,-22,8,31,31,-22,24,7,31,n100'
+           "24,25,14,10,19,19,24,22,40,60,76,23,15,512,-25,6,6,12,-27,5,6,29,n75"
+           '1,0,1,0,0,0,0,0,97,91,97,63,30,5120,-22,8,31,31,-22,24,7,31,n100'
+           "10,15,-24,-25,24,25,25,24,49,22,72,34,15,128,-23,4,1,2,0,4,1,3,n50"
+</PARA>
+
+</TC>
+
+### 特殊字符集
+<TC=SPECALSTR>
+<PARA=SPECAL> COMMAND ~!@#$%^&*()_+=-{}[]|\"':;?/>.<,` </PARA>
+</TC>
+
+### CLI查询命令
+<TC=CLICOMMAND>
+
+# 基本信息
+
+## 总览
+
+### 基本信息
+<PARA=CLI_BIA> COMMAND cli -c "oam.getwild LTE_MODULE_TYPE" | awk -F" " '{print $2}' | tr -d "\n" </PARA>
+<PARA=CLI_BIB> COMMAND cli -c "oam.getwild HW_VERSION_STRING" | awk -F" " '{print $2}' | tr -d "\n"</PARA>
+<PARA=CLI_BIC> COMMAND cli -c "oam.getwild SW_VERSION_STRING" | awk -F" " '{print $2}' | tr -d "\n"</PARA>
+<PARA=CLI_BID> COMMAND cli -c "oam.getwild LONG_SERIAL_NUMBER" | awk -F" " '{print $2}' | tr -d "\n"</PARA>
+<PARA=CLI_BIE> COMMAND cli -c "oam.getwild UNIT_MAC_ADDRES" | awk -F" " '{print $2}' | tr -d "\n"</PARA>
+
+### 状态信息
+<PARA=CLI_SIA> COMMAND cli -c "oam.getwild LTE_RFTX_OP_STATE" |  awk -F" " '{print $2}' | tr -d "\n" </PARA>
+<PARA=CLI_SIB> COMMAND cli -c "oam.getwild MME_STATUS" |awk -F" " '{print $2}' | tr -d "\n" </PARA>
+<PARA=CLI_SIC> COMMAND cli -c "oam.getwild HMS_CONNECTED_STATE" | awk -F" " '{print $2}' | tr -d "\n"</PARA>
+<PARA=CLI_SID> COMMAND if ipsec status | grep -w "ESTABLISHED" >> /dev/null ;then echo "Connected";else echo "Not Connected";fi | tr -d "\n"</PARA>
+<PARA=CLI_SIE> COMMAND cli -c "oam.getwild REM_STATUS" | awk -F" " '{print $2}' | tr -d "\n"</PARA>
+<PARA=CLI_SIF> COMMAND cli -c "oam.getwild 1588_STATUS" | awk -F" " '{print $2}' | tr -d "\n"</PARA>
+<PARA=CLI_SIG> COMMAND cli -c "oam.getwild GPS_STATUS" | awk -F" " '{print $2}' | tr -d "\n"</PARA>
+
+### UE信息
+<PARA=CLI_UES> COMMAND cli -c "oam.getwild UE_COUNT" | awk -F" " '{print $2}' | tr -d "\n"</PARA>
+
+## 快速设置
+
+### 快速设置
+<PARA=CLI_QSA> COMMAND cli -c "oam.getwild LTE_DUPLEX_MODE" | awk -F" " '{print $2}' | tr -d "\n"</PARA>
+<PARA=CLI_QSB> COMMAND cli -c "oam.getwild COUNTRY_CODE" | awk -F" " '{print $2}' | tr -d "\n"</PARA>
+<PARA=CLI_QSC> COMMAND cli -c "oam.getwild LTE_BANDS_SUPPORTED" | awk -F" " '{print $2}' | tr -d "\n"</PARA>
+<PARA=CLI_QSD> COMMAND cli -c "oam.getwild LTE_DL_BANDWIDTH" |  awk -F" " '{print $2}' | tr -d "\n"</PARA>
+<PARA=CLI_QSE> COMMAND cli -c "oam.getwild LTE_DL_EARFCN" | awk -F" " '{print $2}' | tr -d "\n"</PARA>
+<PARA=CLI_QSF> COMMAND cli -c "oam.getwild LTE_TDD_SUBFRAME_ASSIGNMENT" | awk -F" " '{print $2}' | tr -d "\n"</PARA>
+<PARA=CLI_QSG> COMMAND cli -c "oam.getwild LTE_TDD_SPECIAL_SUB_FRAME_PATTERNS" | awk -F" " '{print $2}' | tr -d "\n"</PARA>
+<PARA=CLI_QSH> COMMAND cli -c "oam.getwild LTE_PHY_CELLID_LIST" | awk -F" " '{print $2}' | tr -d "\n"</PARA>
+<PARA=CLI_QSI> COMMAND cli -c "oam.getwild TOGGLE_SWITCH" | awk -F" " '{print $2}' | tr -d "\n"</PARA>
+<PARA=CLI_QSJ> COMMAND cli -c "oam.getwild LTE_CELL_IDENTITY" | awk -F" " '{print $2}' | tr -d "\n"</PARA>
+<PARA=CLI_QSK> COMMAND cli -c "oam.getwild LTE_SIGLINK_SERVER_LIST" | awk -F" " '{print $2}' | tr -d "\n"</PARA>
+<PARA=CLI_QSL> COMMAND mibcli get LTE_CELL_PLMN_LIST.0.LTE_OAM_PLMNID | awk -F= '{print $2}' | tr -d '"\n '</PARA>
+<PARA=CLI_QSM> COMMAND cli -c "oam.getwild LTE_TAC" |  awk -F" " '{print $2}' | tr -d "\n"</PARA>
+<PARA=CLI_QSN> COMMAND cat /tmp/switchpower  | sed -n '1p'  | sed -e 's/^[ \t]*//' | tr -d "\n" </PARA>
+<PARA=CLI_QSO> COMMAND cli -c "oam.getwild LTE_CELL_POWER_MODIFY" | awk -F " " '{print $2}' | tr -d "\n"</PARA>
+
+## NTP
+<PARA=CLI_NTPA> COMMAND /usr/lib/baicells/current_time.sh | awk -F "=" '{print $2}' | tr -d '";\n'</PARA>
+<PARA=CLI_NTPB> COMMAND  cli -c "oam.getwild LTE_X_BAICELLS_NTP_SYNC_INTERVAL" | awk -F " " '{print $2}' | tr -d "\n" </PARA>
+<PARA=CLI_NTPC> COMMAND cli -c "oam.getwild LOCAL_TIMEZONE_OFFSET_TO_GMT" | awk -F " " '{print $2}' | tr -d "\n"</PARA>
+<PARA=CLI_NTPD1> COMMAND cli -c "oam.getwild LTE_NTP_SERVER_1" | awk -F " " '{print $2}' | tr -d "\n"</PARA>
+<PARA=CLI_NTPD2> COMMAND cli -c "oam.getwild LTE_NTP_PORT_1" | awk -F " " '{print $2}' | tr -d "\n"</PARA>
+<PARA=CLI_NTPE1> COMMAND cli -c "oam.getwild LTE_NTP_SERVER_2" | awk -F " " '{print $2}' | tr -d "\n"</PARA>
+<PARA=CLI_NTPE2> COMMAND cli -c "oam.getwild LTE_NTP_PORT_2" | awk -F " " '{print $2}' | tr -d "\n"</PARA>
+<PARA=CLI_NTPF1> COMMAND cli -c "oam.getwild LTE_NTP_SERVER_3" | awk -F " " '{print $2}' | tr -d "\n"</PARA>
+<PARA=CLI_NTPF2> COMMAND cli -c "oam.getwild LTE_NTP_PORT_3" | awk -F " " '{print $2}' | tr -d "\n"</PARA>
+<PARA=CLI_NTPG1> COMMAND cli -c "oam.getwild LTE_NTP_SERVER_4" | awk -F " " '{print $2}' | tr -d "\n"</PARA>
+<PARA=CLI_NTPG2> COMMAND cli -c "oam.getwild LTE_NTP_PORT_4" | awk -F " " '{print $2}' | tr -d "\n"</PARA>
+
+## 升级
+<PARA=CLI_VERA> COMMAND cli -c "oam.getwild SW_VERSION_STRING" | awk -F " " '{print $2}' | tr -d "\n"</PARA>
+<PARA=CLI_VERB> COMMAND  cli -c "oam.getwild SW_SYSTEM_BACKUP_VERSION" | awk -F " " '{print $2}' | tr -d "\n"</PARA>
+<PARA=CLI_UBOOT> COMMAND  cli -c "oam.getwild U_BOOT_VERSION" | awk -F " " '{print $2}' | tr -d "\n"</PARA>
+
+# 网络设置
+
+## WAN/LAN
+
+###WAN
+<PARA=CLI_WANA> COMMAND ifconfig | sed -n -e '/'eth2'/,/inet/p' | head -n 2 | tail -n 1 | awk -F " " '{print $2}' | awk -F : '{print $2}' | tr -d "\n" </PARA>
+<PARA=CLI_WANB> COMMAND cat /etc/config/network |  sed -n -e '/'wan'/,/proto/p' | grep -w "proto" | awk -F " " '{print $3}' | tr -d "'\n" </PARA>
+<PARA=CLI_WANC> COMMAND ifconfig | sed -n -e '/'eth2'/,/inet/p' | head -n 2 | tail -n 1 | awk -F " " '{print $4}' | awk -F : '{print $2}' | tr -d "\n"</PARA>
+<PARA=CLI_WAND> COMMAND cat /etc/config/network |  sed -n -e '/'wan'/,/gateway/p' | grep -w "gateway" | awk -F " " '{print $3}' | tr -d "'\n" </PARA>
+<PARA=CLI_WANE> COMMAND cat /etc/config/network |  sed -n -e '/'wan'/,/dns/p' | grep -w "dns" | awk -F " " '{print $3}' | tr -d "'\n" </PARA>
+
+###LAN
+<PARA=CLI_LANA> COMMAND cat /etc/config/network  | sed -n -e '/'lan'/,/ipaddr/p' | grep -w "ipaddr" | awk -F " " '{print $3}' | tr -d "'\n"</PARA>
+<PARA=CLI_LANB> COMMAND cat /etc/config/network  | sed -n -e '/'lan'/,/netmask/p' | grep -w "netmask" | awk -F " " '{print $3}' | tr -d "'\n"</PARA>
+
+##DHCP
+<PARA=CLI_DHCPA> COMMAND if cat /etc/config/dhcp  | sed -n -e '/lan/,/wan/p' | grep 'ignore';then echo "0";else echo "1";fi | tail -n 1 | tr -d "\n" </PARA>
+<PARA=CLI_DHCPB> COMMAND cat /etc/config/dhcp  | sed -n -e '/lan/,/start/p' | grep -w "start" | awk -F " " '{print $3}' | tr -d "'\n" </PARA>
+<PARA=CLI_DHCPC> COMMAND expr `cat /etc/config/dhcp  | sed -n -e '/lan/,/start/p' | grep -w "start" | awk -F " " '{print $3}' | tr -d "'\n"` + `cat /etc/config/dhcp  | sed -n -e '/lan/,/limit/p' | grep -w "limit" | awk -F " " '{print $3
+}' | tr -d "'\n"` - 1 | tr -d "\n" </PARA>
+<PARA=CLI_DHCPD> COMMAND cat /etc/config/dhcp  | sed -n -e '/lan/,/leasetime/p' | grep -w "leasetime" | awk -F " " '{print $3}' | tr -d "h'\n"</PARA>
+
+## VLAN
+<PARA=CLI_VLANA> COMMAND cat /etc/config/network  | grep interface | egrep -v "'lan'|'wan'|'loopback'"  | awk -F " " '{print $3","}'  | tr -d "\n"</PARA>
+<PARA=CLI_VLANB> COMMAND cat /etc/config/network | grep eth2   | egrep -v "'eth2'" | awk -F " " '{print $3","}' | tr -d "eth2.\n"</PARA>
+<PARA=CLI_VLANC> COMMAND  cat /etc/config/network | sed -n -e '/'%s'/,/proto/p' | grep -w "proto" | awk -F " " '{print $3'} | tr -d "\n'"</PARA>
+<PARA=CLI_VLAND> COMMAND cat /etc/config/network | sed -n -e '/'%s'/,/ipaddr/p' | grep -w "ipaddr" |  awk -F " " '{print $3'} | tr -d "\n'"</PARA>
+<PARA=CLI_VLANE> COMMAND  cat /etc/config/network | sed -n -e '/'%s'/,/netmask/p' | grep -w "netmask" |  awk -F " " '{print $3'} | tr -d "\n'"</PARA>
+<PARA=CLI_VLANF> COMMAND cat /etc/config/network | sed -n -e '/'%s'/,/gateway/p' | grep -w "gateway" |  awk -F " " '{print $3'} | tr -d "\n'"</PARA>
+
+## IPSec/MME Pool
+
+### IPSec 设置
+<PARA=CLI_IPSSA> COMMAND cli -c "oam.getwild IPSEC_ENABLE" | grep -w "IPSEC_ENABLE" | awk -F " " '{print $2}' | tr -d "\n"</PARA>
+<PARA=CLI_IPSSB> COMMAND cli -c "oam.getwild IPSEC_RIGHTIKEPORT"   | awk -F " " '{print $2}' | tr -d "\n"</PARA>
+
+### IPSec Tunnel列表
+
+#### Tunnel ID	
+<PARA=CLI_IPSTI> COMMAND  mibcli getobjectinstance IPSEC | sed 'N;s/\n/#/' | sed  s/','/' '/g | tr -d "\n"</PARA>
+
+#### IPSec Tunnel 基本设置
+<PARA=CLI_IPSTB1> COMMAND mibcli get IPSEC.%s.TUNNEL_ENABLE | grep "TUNNEL_ENABLE" | awk -F= '{print $2}' | tr -d "\n" </PARA>
+<PARA=CLI_IPSTB2> COMMAND mibcli get IPSEC.%s.TUNNEL_NAME | tr -d '\n"' |  awk -F= '{print $2}' | tr -d "\n "</PARA>
+<PARA=CLI_IPSTB3> COMMAND mibcli get IPSEC.%s.TUNNEL_GATEWAY | tr -d '\n"' |  awk -F= '{print $2}' | tr -d "\n "</PARA>
+<PARA=CLI_IPSTB4> COMMAND mibcli get IPSEC.%s.RIGHT_SUBNET | tr -d '\n"' |  awk -F= '{print $2}' | tr -d "\n "</PARA>
+<PARA=CLI_IPSTB5> COMMAND mibcli get IPSEC.%s.LEFT_IDENTIFIER | grep -v ^$ | awk -F[\"] '{print $2}' | tr -d "\n"</PARA>
+<PARA=CLI_IPSTB6> COMMAND mibcli get IPSEC.%s.RIGHT_IDENTIFIER | grep -v ^$ | awk -F[\"] '{print $2}' | tr -d "\n"</PARA>
+<PARA=CLI_IPSTB7> COMMAND mibcli get IPSEC.%s.AUTHBY | grep -v ^$ | awk -F[\"] '{print $2}' | tr -d "\n"</PARA>
+<PARA=CLI_IPSTB8> COMMAND mibcli get IPSEC.%s.PRE_SHARED_KEY | grep -v ^$ | awk -F[\"] '{print $2}' | tr -d "\n"</PARA>
+<PARA=CLI_IPSTB9> COMMAND  mibcli get IPSEC.%s.LEFTSOURCEIP | grep -v ^$ | awk -F[\"] '{print $2}' | tr -d "\n"</PARA>
+
+#### IPSec Tunnel 高级设置
+<PARA=CLI_IPSTA1> COMMAND mibcli get IPSEC.%s.IKE_ENCRYPTION | grep -v ^$ | awk -F[\"] '{print $2}' | tr -d "\n"</PARA>
+<PARA=CLI_IPSTA2> COMMAND mibcli get IPSEC.%s.IKE_DH_GROUP | grep -v ^$ | awk -F[\"] '{print $2}' | tr -d "\n"</PARA>
+<PARA=CLI_IPSTA3> COMMAND mibcli get IPSEC.%s.IKE_AUTHENTICATION | grep -v ^$ | awk -F[\"] '{print $2}' | tr -d "\n"</PARA>
+<PARA=CLI_IPSTA4> COMMAND mibcli get IPSEC.%s.ESP_ENCRYPTION | grep -v ^$ | awk -F[\"] '{print $2}' | tr -d "\n"</PARA>
+<PARA=CLI_IPSTA5> COMMAND mibcli get IPSEC.%s.ESP_DH_GROUP | grep -v ^$ | awk -F[\"] '{print $2}' | tr -d "\n"</PARA>
+<PARA=CLI_IPSTA6> COMMAND  mibcli get IPSEC.%s.ESP_AUTHENTICATION | grep -v ^$ | awk -F[\"] '{print $2}' | tr -d "\n"</PARA>
+<PARA=CLI_IPSTA7> COMMAND mibcli get IPSEC.%s.KEYLIFE | grep -v ^$ | awk -F[\"] '{print $2}' | tr -d "\n"</PARA>
+<PARA=CLI_IPSTA8> COMMAND mibcli get IPSEC.%s.IKELIFETIME | grep -v ^$ | awk -F[\"] '{print $2}' | tr -d "\n"</PARA>
+<PARA=CLI_IPSTA9> COMMAND mibcli get IPSEC.%s.REKEYMARGIN | grep -v ^$ | awk -F[\"] '{print $2}' | tr -d "\n"</PARA>
+<PARA=CLI_IPSTA10> COMMAND  mibcli get IPSEC.%s.KEYINGTRIES | grep -v ^$ | awk -F[\"] '{print $2}' | tr -d "\n"</PARA>
+<PARA=CLI_IPSTA11> COMMAND mibcli get IPSEC.%s.DPDACTION | grep -v ^$ | awk -F[\"] '{print $2}' | tr -d "\n"</PARA>
+<PARA=CLI_IPSTA12> COMMAND mibcli get IPSEC.0.DPDDELAY  | grep -v ^$ | awk -F[\"] '{print $2}' | tr -d "\n"</PARA>
+
+### MME POOL
+<PARA=CLI_MMEPA> COMMAND cli -c "oam.getwild LTE_X_BAICELLS_MME_POOL_ENABLE" | awk -F " " '{print $2}' | tr -d "\n"</PARA>
+<PARA=CLI_MMEPB> COMMAND cli -c "oam.getwild LTE_X_BAICELLS_POOL_MME_LIST1" |  awk -F " " '{print $2}' | tr -d "\n"</PARA>
+<PARA=CLI_MMEPC> COMMAND cli -c "oam.getwild LTE_X_BAICELLS_POOL_MME_LIST2" |  awk -F " " '{print $2}' | tr -d "\n"</PARA>
+<PARA=CLI_MMEPD> COMMAND cli -c "oam.getwild LTE_X_BAICELLS_MMELIST_TUNNEL_MAP" |  awk -F " " '{print $2}'  | sed s/,/:/g | awk -F: '{print $1" Binded,",$3" Binded"}' | tr -d "\n"</PARA>
+
+## LGW
+<PARA=CLI_LGWA> COMMAND cli -c "oam.getwild LTE_LGW_SWITCH" | awk -F " " '{print $2}' | tr -d "\n"</PARA>
+<PARA=CLI_LGWB> COMMAND cli -c "oam.getwild LTE_LGW_TRANSFER_MODE" | awk -F " " '{print $2}' | tr -d "\n"</PARA>
+<PARA=CLI_LGWC> COMMAND cli -c "oam.getwild LTE_LGW_IFNAME" | awk -F " " '{print $2}' | tr -d "\n" | awk -F. '{print $2}'</PARA>
+<PARA=CLI_LGWD> COMMAND cli -c "oam.getwild LTE_LGW_START_UE_ADDR" | awk -F " " '{print $2}' | tr -d "\n"</PARA>
+<PARA=CLI_LGWE> COMMAND cli -c "oam.getwild LTE_LGW_NET_MASK" | awk -F " " '{print $2}' | tr -d "\n"</PARA>
+<PARA=CLI_LGWF> COMMAND cli -c "oam.getwild LTE_LGW_STATIC_IP_ADDR_SWITCH" | awk -F " " '{print $2}' | tr -d "\n"</PARA>
+<PARA=CLI_LGWG1> COMMAND cli -c "oam.getwild LTE_LGW_FIRST_STATIC_IP_ADDRESS" | awk -F " " '{print $2}' | tr -d "\n"</PARA>
+<PARA=CLI_LGWG2> COMMAND cli -c "oam.getwild LTE_LGW_LAST_STATIC_IP_ADDRESS" | awk -F " " '{print $2}' | tr -d "\n"</PARA>
+<PARA=CLI_LGWH> COMMAND cli -c "oam.getwild LTE_LGW_IMSI_IP_LIST" |  awk -F " " '{print $2}' | tr -d "\n" </PARA>
+
+# 基站设置
+
+## 安全设置
+<PARA=CLI_CIP>  COMMAND  cli -c "oam.getwild CIPHERING" | awk -F" " '{print $2}' | awk -F, '{print $1}' | tr -d "\n" | tr -d '\"'</PARA>
+<PARA=CLI_INT>  COMMAND  cli -c "oam.getwild INTEGRITY" | awk -F " " '{print $2}' | awk -F, '{print $1}' | tr -d "\n" | tr -d '\"'</PARA>
+
+## 网管设置
+<PARA=CLI_MAN>  COMMAND  cli -c "oam.getwild Management_SERVER" | grep -w "MANAGEMENT_SERVER" | awk -F" " '{print $2}' | sed s/^http\:\\/\\///g | tr -d '\n' </PARA>
+<PARA=CLI_CLO>  COMMAND  cli -c "oam.getwild CloudKey" | awk -F" " '{print $2}' | tr -d '\n' </PARA>
+
+## 同步设置
+<PARA=CLI_PLM> COMMAND  cli -c "oam.getwild LTE_REM_SCAN_PLMN_LIST" | awk -F " " '{print $2}' | tr -d "\n" | tr -d '\"' </PARA>
+<PARA=CLI_BAN> COMMAND  cli -c "oam.getwild LTE_REM_SCAN_BAND_LIST" | awk -F " " '{print $2}' | tr -d "\n" | tr -d '\"' </PARA>
+<PARA=CLI_ARF> COMMAND  cli -c "oam.getwild LTE_REM_SCAN_ARFCN_LIST" | awk -F " " '{print $2}' | tr -d "\n" | tr -d '\"' </PARA>
+<PARA=CLI_GPS1> COMMAND cli -c "oam.getwild LTE_GPS_SYNC_ENABLE" | awk -F " " '{print $2}' | tr -d '\n'</PARA>
+<PARA=CLI_GPS2> COMMAND cli -c "oam.getwild GPS_SYNCHRONIZATION_SOURCE_LIST" | awk -F " " '{print $2}' | tr -d '\n' </PARA>
+<PARA=CLI_1588> COMMAND cli -c "oam.getwild LTE_1588_SYNC_ENABLE" | awk -F " " '{print $2}' | tr -d '\n' </PARA>
+
+
+# LTE
+
+## LTE邻频邻区
+
+### 邻频设置
+<PARA=CLI_LFCA> COMMAND mibcli getobjectinstance LTE_RAN_MOB_IDLE_MODE_INTER_FREQ_CARRIER | sed 'N;s/\n/#/' | sed 's/.$//' </PARA>
+<PARA=CLI_LFCB> COMMAND mibcli get "LTE_RAN_MOB_IDLE_MODE_INTER_FREQ_CARRIER.%s.LTE_INTER_FREQ_DL_EARFCN" | awk -F= '{print $2}' | tr -d "\n "</PARA>
+<PARA=CLI_LFCC> COMMAND mibcli get "LTE_RAN_MOB_IDLE_MODE_INTER_FREQ_CARRIER.%s.LTE_INTER_FREQ_QRX_LEVEL_MIN_SIB5" | awk -F= '{print $2}' | tr -d "\n "</PARA>
+<PARA=CLI_LFCD> COMMAND mibcli get "LTE_RAN_MOB_IDLE_MODE_INTER_FREQ_CARRIER.%s.LTE_INTER_FREQ_QOFFSETFREQ" | awk -F= '{print $2}' | tr -d "\n "</PARA>
+<PARA=CLI_LFCE> COMMAND mibcli get "LTE_RAN_MOB_IDLE_MODE_INTER_FREQ_CARRIER.%s.LTE_INTER_FREQ_TRESELECTION_EUTRA" | awk -F= '{print $2}' | tr -d "\n "</PARA>
+<PARA=CLI_LFCF> COMMAND mibcli get "LTE_RAN_MOB_IDLE_MODE_INTER_FREQ_CARRIER.%s.LTE_INTER_FREQ_CELL_RESELECT_PRIORITY"  | awk -F= '{print $2}' | tr -d "\n "</PARA>
+<PARA=CLI_LFCG> COMMAND mibcli get "LTE_RAN_MOB_IDLE_MODE_INTER_FREQ_CARRIER.%s.LTE_INTER_FREQ_THRESHOLD_XHIGH" | awk -F= '{print $2}' | tr -d "\n "</PARA>
+<PARA=CLI_LFCH> COMMAND mibcli get "LTE_RAN_MOB_IDLE_MODE_INTER_FREQ_CARRIER.%s.LTE_INTER_FREQ_THRESHOLD_XLOW" | awk -F= '{print $2}' | tr -d "\n "</PARA>
+<PARA=CLI_LFCI> COMMAND mibcli get "LTE_RAN_MOB_IDLE_MODE_INTER_FREQ_CARRIER.%s.LTE_INTER_FREQ_PMAX" | awk -F= '{print $2}' | tr -d "\n " </PARA>
+<PARA=CLI_LFCJ> COMMAND mibcli get "LTE_RAN_MOB_IDLE_MODE_INTER_FREQ_CARRIER.%s.LTE_INTER_FREQ_ENABLE" | awk -F= '{print $2}' | tr -d "\n "</PARA>
+
+### 邻区设置
+<PARA=CLI_LNCA> COMMAND mibcli getobjectinstance LTE_RAN_NEIGH_LIST_LTE_CELL | sed 'N;s/\n/#/' | sed s/.$//g | tr -d "\n"</PARA>
+<PARA=CLI_LNCB> COMMAND mibcli get "LTE_RAN_NEIGH_LIST_LTE_CELL.%s.LTE_NEIGH_LIST_LTE_CELL_PLMNID" | awk -F= '{print $2}' | tr -d '\n "'</PARA>
+<PARA=CLI_LNCC> COMMAND mibcli get "LTE_RAN_NEIGH_LIST_LTE_CELL.%s.LTE_NEIGH_LIST_LTE_CELL_CID" | awk -F= '{print $2}' | tr -d '\n "'</PARA>
+<PARA=CLI_LNCD> COMMAND mibcli get "LTE_RAN_NEIGH_LIST_LTE_CELL.%s.LTE_NEIGH_LIST_LTE_CELL_EARFCN" | awk -F= '{print $2}' | tr -d '\n "'</PARA>
+<PARA=CLI_LNCE> COMMAND mibcli get "LTE_RAN_NEIGH_LIST_LTE_CELL.%s.LTE_NEIGH_LIST_LTE_CELL_PHY_CELLID"  | awk -F= '{print $2}' | tr -d '\n "'</PARA>
+<PARA=CLI_LNCF> COMMAND mibcli get "LTE_RAN_NEIGH_LIST_LTE_CELL.%s.LTE_NEIGH_LIST_LTE_CELL_QOFFSET"  | awk -F= '{print $2}' | tr -d '\n "'</PARA>
+<PARA=CLI_LNCG> COMMAND mibcli get "LTE_RAN_NEIGH_LIST_LTE_CELL.%s.LTE_NEIGH_LIST_LTE_CELL_CIO" | awk -F= '{print $2}' | tr -d '\n "'</PARA>
+<PARA=CLI_LNCH> COMMAND mibcli get "LTE_RAN_NEIGH_LIST_LTE_CELL.%s.LTE_X_BAICELLS_NEIGH_LIST_LTE_CELL_TAC" | awk -F= '{print $2}' | tr -d '\n "'</PARA>
+<PARA=CLI_LNCI> COMMAND mibcli get "LTE_RAN_NEIGH_LIST_LTE_CELL.%s.LTE_NEIGH_LIST_LTE_CELL_ENABLE" | awk -F= '{print $2}' | tr -d '\n "'</PARA>
+
+## TD-S邻频邻区
+
+### TD-S 邻频设置
+<PARA=CLI_TDSA> COMMAND mibcli getobjectinstance LTE_TDS_CDMA_UTRAN_TDD_FREQ_LIST | sed 'N;s/\n/#/' | sed s/.$//g | tr -d "\n"</PARA>
+<PARA=CLI_TDSB> COMMAND mibcli get "LTE_TDS_CDMA_UTRAN_TDD_FREQ_LIST.%s.LTE_TDS_CDMA_UTRATDD_MODE" | awk -F= '{print $2}' | tr -d '\n "'</PARA>
+<PARA=CLI_TDSC> COMMAND mibcli get "LTE_TDS_CDMA_UTRAN_TDD_FREQ_LIST.%s.LTE_TDS_CDMA_UTRATDD_BAND_INDICATOR" |  awk -F= '{print $2}' | tr -d '\n "'</PARA>
+<PARA=CLI_TDSD> COMMAND mibcli get "LTE_TDS_CDMA_UTRAN_TDD_FREQ_LIST.%s.LTE_TDS_CDMA_UTRA_ARFCN"  |  awk -F= '{print $2}' | tr -d '\n "'</PARA>
+<PARA=CLI_TDSE> COMMAND mibcli get "LTE_TDS_CDMA_UTRAN_TDD_FREQ_LIST.%s.LTE_TDS_CDMA_QRX_LEV_MIN" |  awk -F= '{print $2}' | tr -d '\n "'</PARA>
+<PARA=CLI_TDSF> COMMAND mibcli get "LTE_TDS_CDMA_UTRAN_TDD_FREQ_LIST.%s.LTE_TDS_CDMA_CELL_RESEL_PRIOR"  |  awk -F= '{print $2}' | tr -d '\n "'</PARA>
+<PARA=CLI_TDSG> COMMAND mibcli get "LTE_TDS_CDMA_UTRAN_TDD_FREQ_LIST.%s.LTE_TDS_CDMA_THRESH_X_HIGH"  |  awk -F= '{print $2}' | tr -d '\n "'</PARA>
+<PARA=CLI_TDSH> COMMAND mibcli get "LTE_TDS_CDMA_UTRAN_TDD_FREQ_LIST.%s.LTE_TDS_CDMA_THRESH_X_LOW" |  awk -F= '{print $2}' | tr -d '\n "'</PARA>
+<PARA=CLI_TDSI> COMMAND mibcli get "LTE_TDS_CDMA_UTRAN_TDD_FREQ_LIST.%s.LTE_TDS_CDMA_PMAX_UTRA" |  awk -F= '{print $2}' | tr -d '\n "'</PARA>
+<PARA=CLI_TDSJ> COMMAND mibcli get "LTE_TDS_CDMA_UTRAN_TDD_FREQ_LIST.%s.LTE_TDS_CDMA_QOFFSET_UTRATDD" |  awk -F= '{print $2}' | tr -d '\n "'</PARA>
+<PARA=CLI_TDSK> COMMAND mibcli get "LTE_TDS_CDMA_UTRAN_TDD_FREQ_LIST.%s.LTE_TDS_CDMA_FREQ_ENABLE" |  awk -F= '{print $2}' | tr -d '\n "'</PARA>
+
+### TD-S 邻区设置
+<PARA=CLI_TNCTA> COMMAND mibcli getobjectinstance LTE_TDS_CDMA_UTRAN_TDD_CELL_LIST | sed 'N;s/\n/#/' | sed s/.$//g | tr -d "\n"</PARA>
+<PARA=CLI_TNCTB> COMMAND mibcli get LTE_TDS_CDMA_UTRAN_TDD_CELL_LIST.%s.LTE_TDS_CDMA_CELL_PARAM_ID | awk -F= '{print $2}' | tr -d '\n "'</PARA>
+<PARA=CLI_TNCTC> COMMAND mibcli get LTE_TDS_CDMA_UTRAN_TDD_CELL_LIST.%s.LTE_TDS_CDMA_PLMNID | awk -F= '{print $2}' | tr -d '\n "'</PARA>
+<PARA=CLI_TNCTD> COMMAND mibcli get LTE_TDS_CDMA_UTRAN_TDD_CELL_LIST.%s.LTE_TDS_CDMA_UARFCN | awk -F= '{print $2}' | tr -d '\n "'</PARA>
+<PARA=CLI_TNCTE> COMMAND mibcli get LTE_TDS_CDMA_UTRAN_TDD_CELL_LIST.%s.LTE_TDS_CDMA_CID | awk -F= '{print $2}' | tr -d '\n "' </PARA>
+<PARA=CLI_TNCTF> COMMAND mibcli get LTE_TDS_CDMA_UTRAN_TDD_CELL_LIST.%s.LTE_TDS_CDMA_RNCID | awk -F= '{print $2}' | tr -d '\n "'</PARA>
+<PARA=CLI_TNCTG> COMMAND mibcli get LTE_TDS_CDMA_UTRAN_TDD_CELL_LIST.%s.LTE_TDS_CDMA_LAC | awk -F= '{print $2}' | tr -d '\n "'</PARA>
+<PARA=CLI_TNCTH> COMMAND mibcli get LTE_TDS_CDMA_UTRAN_TDD_CELL_LIST.%s.LTE_TDS_CDMA_CELL_ENABLE |  awk -F= '{print $2}' | tr -d '\n "'</PARA>
+
+## GSM 邻频邻区
+
+### GSM 邻频设置
+<PARA=CLI_GNFA> COMMAND mibcli getobjectinstance LTE_INTER_RAT_GERAN_NEIGHBOR_FREQ_LIST | sed 'N;s/\n/#/' | sed  s/.$//g | tr -d "\n" </PARA>
+<PARA=CLI_GNFB> COMMAND mibcli get LTE_INTER_RAT_GERAN_NEIGHBOR_FREQ_LIST.%s.LTE_GERAN_FREQ_THRESHX_HIGH |  awk -F= '{print $2}' | tr -d '\n "'</PARA>
+<PARA=CLI_GNFC> COMMAND mibcli get LTE_INTER_RAT_GERAN_NEIGHBOR_FREQ_LIST.%s.LTE_GERAN_FREQ_THRESHX_LOW  |  awk -F= '{print $2}' | tr -d '\n "'</PARA>
+<PARA=CLI_GNFD> COMMAND mibcli get LTE_INTER_RAT_GERAN_NEIGHBOR_FREQ_LIST.%s.LTE_GERAN_FREQ_CELL_RESEL_PRIOR |  awk -F= '{print $2}' | tr -d '\n "'</PARA>
+<PARA=CLI_GNFE> COMMAND mibcli get LTE_INTER_RAT_GERAN_NEIGHBOR_FREQ_LIST.%s.LTE_GERAN_FREQ_QRX_LEV_MIN  |  awk -F= '{print $2}' | tr -d '\n "'</PARA>
+<PARA=CLI_GNFF> COMMAND mibcli get LTE_INTER_RAT_GERAN_NEIGHBOR_FREQ_LIST.%s.LTE_GERAN_FREQ_BAND_INDICATOR  |  awk -F= '{print $2}' | tr -d '\n "'</PARA>
+<PARA=CLI_GNFG> COMMAND mibcli get LTE_INTER_RAT_GERAN_NEIGHBOR_FREQ_LIST.%s.LTE_GERAN_FREQ_BCCH_ARFCN | awk -F= '{print $2}' | tr -d '\n "'</PARA>
+<PARA=CLI_GNFH> COMMAND mibcli get LTE_INTER_RAT_GERAN_NEIGHBOR_FREQ_LIST.%s.LTE_GERAN_FREQ_ENABLE | awk -F= '{print $2}' | tr -d '\n "'</PARA>
+
+### GSM 邻区设置
+<PARA=CLI_GNCTA> COMMAND mibcli getobjectinstance LTE_INTER_RAT_GERAN_NEIGHBOR_CELL_LIST | sed 'N;s/\n/#/' | sed  s/.$//g | tr -d "\n" </PARA>
+<PARA=CLI_GNCTB> COMMAND mibcli get LTE_INTER_RAT_GERAN_NEIGHBOR_CELL_LIST.%s.LTE_GERAN_CELL_PLMNID | awk -F= '{print $2}' | tr -d '\n "'</PARA>
+<PARA=CLI_GNCTC> COMMAND mibcli get LTE_INTER_RAT_GERAN_NEIGHBOR_CELL_LIST.%s.LTE_GERAN_CELL_LAC | awk -F= '{print $2}' | tr -d '\n "'</PARA>
+<PARA=CLI_GNCTD> COMMAND mibcli get LTE_INTER_RAT_GERAN_NEIGHBOR_CELL_LIST.%s.LTE_GERAN_CELL_BSIC | awk -F= '{print $2}' | tr -d '\n "'</PARA>
+<PARA=CLI_GNCTE> COMMAND mibcli get LTE_INTER_RAT_GERAN_NEIGHBOR_CELL_LIST.%s.LTE_GERAN_CELL_CI | awk -F= '{print $2}' | tr -d '\n "'</PARA>
+<PARA=CLI_GNCTF> COMMAND mibcli get LTE_INTER_RAT_GERAN_NEIGHBOR_CELL_LIST.%s.LTE_GERAN_CELL_BAND_INDICATOR | awk -F= '{print $2}' | tr -d '\n "'</PARA>
+<PARA=CLI_GNCTG> COMMAND mibcli get LTE_INTER_RAT_GERAN_NEIGHBOR_CELL_LIST.%s.LTE_GERAN_CELL_BCCH_ARFCN | awk -F= '{print $2}' | tr -d '\n "'</PARA>
+<PARA=CLI_GNCTH> COMMAND mibcli get LTE_INTER_RAT_GERAN_NEIGHBOR_CELL_LIST.%s.LTE_GERAN_CELL_ENABLE | awk -F= '{print $2}' | tr -d '\n "'</PARA>
+
+## 移动性参数
+<PARA=CLI_LA1> COMMAND  cli -c "oam.getwild LTE_A1_THRESHOLD_RSRP" | grep -w "LTE_A1_THRESHOLD_RSRP" | awk -F " " '{print $2}' | tr -d '\n'</PARA>
+<PARA=CLI_LA2> COMMAND  cli -c "oam.getwild LTE_A2_THRESHOLD_RSRP" | grep -w "LTE_A2_THRESHOLD_RSRP" | awk -F " " '{print $2}' | tr -d '\n'</PARA>
+<PARA=CLI_LA3A> COMMAND cli -c "oam.getwild LTE_INTRA_HO_A3_OFFSET" | awk -F ' ' '{print $2}' | tr -d '\n' </PARA>
+<PARA=CLI_LA3B> COMMAND cli -c "oam.getwild LTE_INTRA_ANR_A3_OFFSET" | awk -F ' ' '{print $2}' | tr -d '\n' </PARA>
+<PARA=CLI_LA5A> COMMAND cli -c "oam.getwild LTE_INTER_A5_THRESHOLD_1_RSRP" | awk -F ' ' '{print $2}' | tr -d '\n'</PARA>
+<PARA=CLI_LA5B> COMMAND cli -c "oam.getwild LTE_INTER_A5_THRESHOLD_2_RSRP" | awk -F ' ' '{print $2}' | tr -d '\n' </PARA>
+<PARA=CLI_LA5C> COMMAND cli -c "oam.getwild LTE_INTER_ANR_A5_THRESHOLD_1_RSRP" | awk -F ' ' '{print $2}' | tr -d '\n'</PARA>
+<PARA=CLI_LA5D> COMMAND cli -c "oam.getwild LTE_INTER_ANR_A5_THRESHOLD_2_RSRP" | awk -F ' ' '{print $2}' | tr -d '\n' </PARA>
+<PARA=CLI_LB2A> COMMAND cli -c "oam.getwild LTE_B2_THRESHOLD1_UTRA_RSRP_HO" | awk -F ' ' '{print $2}' | tr -d '\n'</PARA>
+<PARA=CLI_LB2B> COMMAND cli -c "oam.getwild LTE_TDS_CDMA_B2_THRSH2_UTRATDD_RSCP" | awk -F ' ' '{print $2}' | tr -d '\n' </PARA>
+<PARA=CLI_LB2C> COMMAND cli -c "oam.getwild LTE_B2_THRESHOLD1_GERAN_RSRP_IRAT" | awk -F ' ' '{print $2}' | tr -d '\n'</PARA>
+<PARA=CLI_LB2D> COMMAND cli -c "oam.getwild LTE_B2_THRESHOLD2_GERAN_IRAT" | awk -F ' ' '{print $2}' | tr -d '\n' </PARA>
+<PARA=CLI_MCPA> COMMAND cli -c "oam.getwild LTE_HYSTERESIS" | grep -w "LTE_HYSTERESIS" | awk -F " " '{print $2}' | tr -d "\n"</PARA>
+<PARA=CLI_MCPB> COMMAND cli -c "oam.getwild LTE_TIME_TO_TRIGGER" | grep -w "LTE_TIME_TO_TRIGGER" | awk -F " " '{print $2}' | tr -d "\n"</PARA>
+<PARA=CLI_CSPA> COMMAND cli -c "oam.getwild LTE_QRX_LEVEL_MIN_SIB1" | awk -F ' ' '{print $2}' | tr -d '\n' </PARA>
+<PARA=CLI_CSPB> COMMAND cli -c "oam.getwild LTE_QRX_LEVEL_MIN_OFFSET" | awk -F ' ' '{print $2}' | tr -d '\n' </PARA>
+<PARA=CLI_CRPA> COMMAND cli -c "oam.getwild LTE_SINTRA_SEARCH" | grep -w "LTE_SINTRA_SEARCH" | awk -F " " '{print $2}' | tr -d "\n" </PARA>
+<PARA=CLI_CRPB> COMMAND cli -c "oam.getwild LTE_S_NON_INTRA_SEARCH" | grep -w "LTE_S_NON_INTRA_SEARCH" | awk -F " " '{print $2}' | tr -d "\n"</PARA>
+<PARA=CLI_CRPC> COMMAND cli -c "oam.getwild LTE_QRX_LEVEL_MIN_SIB3" | awk -F " " '{print $2}' | tr -d "\n" </PARA>
+<PARA=CLI_CRPD> COMMAND cli -c "oam.getwild LTE_QHYST" | grep -w "LTE_QHYST"  | awk -F " " '{print $2}' | tr -d "\n"</PARA>
+<PARA=CLI_CRPE> COMMAND cli -c "oam.getwild LTE_CELL_RESELECTION_PRIORITY" | awk -F " " '{print $2}' | tr -d "\n" </PARA>
+<PARA=CLI_CRPF> COMMAND cli -c "oam.getwild LTE_THRESH_SERVING_LOW" | grep -w "LTE_THRESH_SERVING_LOW"  | awk -F " " '{print $2}' | tr -d "\n"</PARA>
+<PARA=CLI_CRPG> COMMAND cli -c "oam.getwild LTE_OAM_NEIGHBOUR_DL_BANDWIDTH_SIB3" | awk -F " " '{print $2}' | tr -d "\n"</PARA>
+
+## 高级设置
+
+### X2参数设置
+<PARA=CLI_X2> COMMAND cli -c "oam.getwild LTE_ENABLE_X2" |  awk -F " " '{print $2}' | tr -d "\n" </PARA> 
+
+### 功率控制参数
+<PARA=CLI_PCPA> COMMAND cli -c "oam.getwild LTE_PMAX" | grep -w "LTE_PMAX" |  awk -F " " '{print $2}' | tr -d "\n"</PARA>
+<PARA=CLI_PCPB> COMMAND cli -c "oam.getwild LTE_REFERNCE_SIG_POWER" | awk -F " " '{print $2}' | tr -d "\n"</PARA>
+<PARA=CLI_PCPC> COMMAND cli -c "oam.getwild LTE_POWER_RAMPING" | awk -F " " '{print $2}' | tr -d "\n"</PARA>
+<PARA=CLI_PCPD> COMMAND cli -c "oam.getwild LTE_PREAMBLE_INIT_TARGET_POWER" | awk -F " " '{print $2}' | tr -d "\n"</PARA>
+<PARA=CLI_PCPE> COMMAND cli -c "oam.getwild LTE_PO_NOMINAL_PUSCH" | grep -w "LTE_PO_NOMINAL_PUSCH" | awk -F " " '{print $2}' | tr -d "\n"</PARA>
+<PARA=CLI_PCPF> COMMAND cli -c "oam.getwild LTE_PO_NOMINAL_PUCCH" | awk -F " " '{print $2}' | tr -d "\n"</PARA>
+<PARA=CLI_PCPG> COMMAND cli -c "oam.getwild LTE_ALPHA" | awk -F " " '{print $2}' | tr -d "\n"</PARA>
+<PARA=CLI_PCPH> COMMAND cli -c "oam.getwild LTE_MAX_PATHLOSS" | awk -F " " '{print $2}' | tr -d "\n"</PARA>
+<PARA=CLI_PCPI> COMMAND cli -c "oam.getwild LTE_TARGET_UL_SINR" | awk -F " " '{print $2}' | tr -d "\n"</PARA>
+<PARA=CLI_PCPJ> COMMAND cli -c "oam.getwild LTE_PO_UE_PUCCH" | awk -F " " '{print $2}' | tr -d "\n"</PARA>
+<PARA=CLI_PCPK> COMMAND cli -c "oam.getwild LTE_PO_UE_PUSCH" | awk -F " " '{print $2}' | tr -d "\n"</PARA>
+<PARA=CLI_PCPL> COMMAND cli -c "oam.getwild LTE_PA" | awk -F" " '{print $2}' | tr -d "\n"</PARA>
+<PARA=CLI_PCPM> COMMAND cli -c "oam.getwild LTE_PB"  | grep -w "LTE_PB" | awk -F" " '{print $2}' | tr -d "\n"</PARA>
+
+### eNodeB设置
+<PARA=CLI_ENODE1> COMMAND cli -c "oam.getwild LTE_HOME_NODEB_NAME" | awk -F" " '{print $2}' | tr -d "\n"</PARA>
+<PARA=CLI_ENODE> COMMAND cli -c "oam.getwild LTE_HOME_NODEB_NAME" | awk -F"_NAME " '{print $2}' | tr -d "\n"</PARA>
+### GAP设置
+<PARA=CLI_GAP> COMMAND cli -c "oam.getwild LTE_INTER_FREQ_MEAS_GAP" |  awk -F" " '{print $2}' | tr -d "\n"</PARA>
+
+### RRC状态参数
+<PARA=CLI_RRCA> COMMAND  cli -c "oam.getwild LTE_UE_INACTIVITY_TIMER_VAL" |  awk -F" " '{print $2}' | tr -d "\n"</PARA>
+<PARA=CLI_RRCB> COMMAND cli -c "oam.getwild LTE_MAX_EXPIRY_COUNT"  | awk -F" " '{print $2}' | tr -d "\n" </PARA>
+
+### SON功能设置
+<PARA=CLI_SONA> COMMAND cli -c "oam.getwild LTE_SELFCONFIG_PHY_CELLID_ENABLE" | awk -F" " '{print $2}' | tr -d "\n"</PARA>
+<PARA=CLI_SONB> COMMAND cli -c "oam.getwild LTE_SON_PHY_CELLID_LIST" | awk -F" " '{print $2}' | tr -d "\n"</PARA>
+
+### 发射和接收参数
+<PARA=CLI_TARP> COMMAND cli -c "oam.getwild LTE_PHY_RXGAIN" | awk -F" " '{print $2}' | tr -d "\n"</PARA>
+
+### 接入参数设置
+<PARA=CLI_RAPA> COMMAND cli -c "oam.getwild LTE_SON_PRACH_CONFIG_INDEX_LIST" | awk -F" " '{print $2}' | tr -d "\n"</PARA>
+<PARA=CLI_RAPB> COMMAND cli -c "oam.getwild LTE_SON_PRACH_ZERO_CORRELATIONZONE_CONFIG_LIST" | awk -F" " '{print $2}' | tr -d "\n"</PARA>
+<PARA=CLI_RAPC> COMMAND cli -c "oam.getwild LTE_SON_PRACH_FREQ_OFFSET_LIST" | awk -F" " '{print $2}' | tr -d "\n"</PARA>
+<PARA=CLI_SAA> COMMAND cli -c "oam.getwild LTE_UL_SCHD_TYPE" | awk -F" " '{print $2}' | tr -d "\n"</PARA>
+<PARA=CLI_SAB> COMMAND cli -c "oam.getwild LTE_DL_SCHD_TYPE" | awk -F" " '{print $2}' | tr -d "\n"</PARA>
+<PARA=CLI_SAPA> COMMAND cli -c "oam.getwild LTE_PHY_PPSsyncGpsAdjSamp" | awk -F" " '{print $2}' | tr -d "\n" </PARA>
+<PARA=CLI_SAPB> COMMAND cli -c "oam.getwild LTE_PHY_ICTAadjSamp" |  awk -F" " '{print $2}' | tr -d "\n"</PARA>
+<PARA=CLI_LASA> COMMAND cli -c "oam.getwild LTE_WAN_CHECK_ENABLE" | awk -F" " '{print $2}' | tr -d "\n"</PARA>
+<PARA=CLI_LASB> COMMAND cli -c "oam.getwild LTE_WAN_CHECK_TIMER_LEN" | awk -F" " '{print $2}' | tr -d "\n"</PARA>
+
+### 容量参数
+<PARA=MAX_UE1> COMMAND cli -c "oam.getwild LTE_MAX_UE_SERVED" | awk -F" " '{print $2}' | tr -d "\n"</PARA>
+<PARA=MAX_UE2> COMMAND cli -c "oam.getwild LTE_MAX_MAC_RNTIS" | awk -F" " '{print $2}' | tr -d "\n"</PARA>
+<PARA=MAX_UE3> COMMAND cli -c "oam.getwild LTE_RRM_SR_PRDCTY" | awk -F" " '{print $2}' | tr -d "\n"</PARA>
+<PARA=MAX_UE4> COMMAND cli -c "oam.getwild LTE_RRM_CQI_PRDCTY" | awk -F" " '{print $2}' | tr -d "\n"</PARA>
+<PARA=MAX_UE5> COMMAND cli -c "oam.getwild LTE_RRM_NUM_CQI_PER_TTI" | awk -F" " '{print $2}' | tr -d "\n"</PARA>
+<PARA=MAX_UE6> COMMAND cli -c "oam.getwild LTE_RRM_NUM_SR_PER_TTI" | awk -F" " '{print $2}' | tr -d "\n"</PARA>
+<PARA=MAX_UE7> COMMAND cli -c "oam.getwild LTE_NRBCQI" | awk -F" " '{print $2}' | tr -d "\n"</PARA>
+<PARA=MAX_UE8> COMMAND cli -c "oam.getwild LTE_CQIRESSHIFT" | awk -F" " '{print $2}' | tr -d "\n"</PARA>
+<PARA=MAX_UE9> COMMAND cli -c "oam.getwild LTE_96_UE_ENABLE" | awk -F" " '{print $2}' | tr -d "\n"</PARA>
+
+</TC>
